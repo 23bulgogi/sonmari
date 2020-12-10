@@ -28,8 +28,10 @@ Convexhull을 사용하여 검출한 손가락 후보와 디펙트를 사용하�
 이후 케라스를 이용해 예측의 정확도와 예측한 결과값을 반환받은 뒤, 정확도가 80프로 이상일 경우에만 결과값을 출력한다.
 
 
-
 # reference
 github.com/EvilPort2/Sign-Language
+
+# license
+해당사항 없음
 
 
