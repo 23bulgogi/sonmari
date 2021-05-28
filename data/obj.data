@@ -1,4 +1,4 @@
-classes = 18
+classes = 17
 train = ./train.txt
 valid = ./test.txt
 names = ./data/obj.names
