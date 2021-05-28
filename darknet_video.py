@@ -9,10 +9,15 @@ from threading import Thread, enumerate
 from queue import Queue
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
+import doctorui
+from PyQt5 import QtWidgets
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 
-continuous = {'감기':["cold1","cold2"], '아니':["no1","no2"], '콧물':["runnynose1","runnynose2"],
-              '쓰러지다':["fall1","fall2"], '설사':["diarrhea1","diarrhea2"], '메스껍다':["nauseous1", "nauseous2"]}
-one = {'2day':'2일', 'house':'3일', 'yes':'응', 'head':'머리', 'stomach':'배', 'sick':'아프다'}
+
+continuous = {'감기에 걸렸습니다':["cold1","cold2"], '아니오':["no1","no2"], '콧물이 나고':["runnynose1","runnynose2"],
+              '쓰러졌습니다':["fall1","fall2"], '설사를 합니다':["diarrhea1","diarrhea2"]}
+one = {'2day':'2일전에', '3day':'3일전에', 'yes':'네', 'head':'머리가', 'stomach':'배가', 'sick':'아픕니다','reset':''}
 
 list_of_key = list(continuous.keys())
 list_of_value = list(continuous.values())
@@ -29,7 +34,7 @@ def parser():
                         help="video source. If empty, uses webcam 0 stream")
     parser.add_argument("--out_filename", type=str, default="",
                         help="inference video name. Not saved if empty")
-    parser.add_argument("--weights", default="./backup/yolov4-obj_best.weights",
+    parser.add_argument("--weights", default="./backup/yolov4-obj_10000.weights",
                         help="yolo weights path")
     parser.add_argument("--dont_show", action='store_true',
                         help="windown inference display. For headless systems")
@@ -74,7 +79,7 @@ def set_saved_video(input_video, output_video, size):
     return video
 
 
-def video_capture(frame_queue, darknet_image_queue):
+def video_capture(cap, width, height, frame_queue, darknet_image_queue):
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -89,7 +94,7 @@ def video_capture(frame_queue, darknet_image_queue):
     cap.release()
 
 
-def inference(darknet_image_queue, detections_queue, fps_queue):
+def inference(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue):
     while cap.isOpened():
         darknet_image = darknet_image_queue.get()
         prev_time = time.time()
@@ -103,7 +108,7 @@ def inference(darknet_image_queue, detections_queue, fps_queue):
     cap.release()
 
 
-def drawing(frame_queue, detections_queue, fps_queue):
+def drawing(cap, window, args, width, height, class_colors, frame_queue, detections_queue, fps_queue):
     random.seed(3)  # deterministic bbox colors
     video = set_saved_video(cap, args.out_filename, (width, height))
     label = ""
@@ -125,13 +130,19 @@ def drawing(frame_queue, detections_queue, fps_queue):
             pill_image = Image.fromarray(image)
             draw = ImageDraw.Draw(pill_image)
             x1, y1 = 30, 30
+
+            #핵심동작 1개인 수화는 15번 출력되게 함
             if word != "" and print_count < 15:
-                print("word")
-                draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(255, 255, 255))
+                draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                 image = np.array(pill_image)
                 print_count += 1
-                video.write(image)
-                cv2.imshow('Inference', image)
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                h,w,c = image.shape
+                qImg = QtGui.QImage(image.data, w, h, w*c, QtGui.QImage.Format_RGB888)
+                pixmap = QtGui.QPixmap.fromImage(qImg)
+                window.image.setPixmap(pixmap)
+
+
                 if cv2.waitKey(fps) == 27:
                     break
                 continue
@@ -139,48 +150,32 @@ def drawing(frame_queue, detections_queue, fps_queue):
             print_count = 0
             word = ""
 
+            #핵심동작 1개인 수화 출력
             if label in list(one.keys()):
-                draw.text((x1, y1), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(255, 255, 255))
+                draw.text((x1, y1), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                 image = np.array(pill_image)
+
+            #핵심동작 2개인 수화 출력
 
             for i in range(len(list_of_key)):
                 if before_result==list_of_value[i][0]:
                     if label==list_of_value[i][1]:
                         word = list_of_key[i]
-                        draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(255, 255, 255))
+                        draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                         image = np.array(pill_image)
                         break
-                        #cv2.putText(frame, list_of_key[0], (x, y - 40), cv2.FONT_ITALIC, 0.5, (255, 255, 255), 1)
-
+                        
             if args.out_filename is not None:
                 video.write(image)
             if not args.dont_show:
-                cv2.imshow('Inference', image)
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                h,w,c = image.shape
+                qImg = QtGui.QImage(image.data, w, h, w*c, QtGui.QImage.Format_RGB888)
+                pixmap = QtGui.QPixmap.fromImage(qImg)
+                window.image.setPixmap(pixmap)
+                
             if cv2.waitKey(fps) == 27:
                 break
     cap.release()
     video.release()
     cv2.destroyAllWindows()
-
-
-if __name__ == '__main__':
-    frame_queue = Queue()
-    darknet_image_queue = Queue(maxsize=1)
-    detections_queue = Queue(maxsize=1)
-    fps_queue = Queue(maxsize=1)
-
-    args = parser()
-    check_arguments_errors(args)
-    network, class_names, class_colors = darknet.load_network(
-            args.config_file,
-            args.data_file,
-            args.weights,
-            batch_size=1
-        )
-    width = darknet.network_width(network)
-    height = darknet.network_height(network)
-    input_path = str2int(args.input)
-    cap = cv2.VideoCapture(input_path)
-    Thread(target=video_capture, args=(frame_queue, darknet_image_queue)).start()
-    Thread(target=inference, args=(darknet_image_queue, detections_queue, fps_queue)).start()
-    Thread(target=drawing, args=(frame_queue, detections_queue, fps_queue)).start()

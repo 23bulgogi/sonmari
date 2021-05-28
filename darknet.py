@@ -185,7 +185,7 @@ def detect_image(network, class_names, image, thresh=.5, hier_thresh=.5, nms=.45
 #  lib = CDLL("libdarknet.so", RTLD_GLOBAL)
 hasGPU = True
 if os.name == "nt":
-    cwd = os.path.dirname(__file__)
+    cwd = os.getcwd()
     os.environ['PATH'] = cwd + ';' + os.environ['PATH']
     winGPUdll = os.path.join(cwd, "yolo_cpp_dll.dll")
     winNoGPUdll = os.path.join(cwd, "yolo_cpp_dll_nogpu.dll")
