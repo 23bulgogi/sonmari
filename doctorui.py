@@ -41,19 +41,6 @@ def parser():
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
 form_class = uic.loadUiType("doctorui.ui")[0]
 
-class ThreadWithReturnValue(Thread):
-    def __init__(self, group=None, target=None, name=None,
-                 args=(), kwargs={}, Verbose=None):
-        Thread.__init__(self, group, target, name, args, kwargs)
-        self._return = None
-    def run(self):
-        print(type(self._target))
-        if self._target is not None:
-            self._return = self._target(*self._args,
-                                                **self._kwargs)
-    def join(self, *args):
-        Thread.join(self, *args)
-        return self._return
 
 class PatientWindow(QDialog):
     def __init__(self, parent):
@@ -134,6 +121,7 @@ class DoctorWindow(QMainWindow, form_class) :
         self.pixmap = self.pixmap.scaledToWidth(70)
         self.icon.setPixmap(self.pixmap)
 
+
         frame_queue = Queue()
         darknet_image_queue = Queue(maxsize=1)
         detections_queue = Queue(maxsize=1)
@@ -150,7 +138,7 @@ class DoctorWindow(QMainWindow, form_class) :
 
         width = darknet.network_width(network)
         height = darknet.network_height(network)
-        cap = cv2.VideoCapture(2)
+        cap = cv2.VideoCapture(0)
         Thread(target=dv.video_capture, args=(cap, width, height, frame_queue, darknet_image_queue)).start()
         Thread(target=dv.inference, args=(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue)).start()
         Thread(target=dv.drawing, args=(cap, self, args, width, height, class_colors, frame_queue, detections_queue, fps_queue)).start()
@@ -164,6 +152,7 @@ class DoctorWindow(QMainWindow, form_class) :
         self.pushButton_5.clicked.connect(self.button5Function)
         self.pushButton_6.clicked.connect(self.button6Function)
         self.pushButton_7.clicked.connect(self.button7Function)
+
 
     def button1Function(self):
         PatientWindow(self).function1(self)
@@ -180,6 +169,11 @@ class DoctorWindow(QMainWindow, form_class) :
     def button7Function(self):
         PatientWindow(self).function7(self)
 
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key_Escape:
+            self.close()
+            cap.release()
+
 if __name__ == "__main__" :
     #QApplication : 프로그램을 실행시켜주는 클래스
     app = QApplication(sys.argv) 
@@ -192,3 +186,8 @@ if __name__ == "__main__" :
 
     #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
     app.exec_()
+
+    sys.exit()
+
+
+    
