@@ -37,6 +37,8 @@ https://wiserloner.tistory.com/m/1247
 # 번역 단어
 이틀,삼일,감기,콧물,쓰러지다,설사,예,아니,머리,배,아프다 등 11개 단어에 대한 번역을 제공합니다.
 
+<img src="https://user-images.githubusercontent.com/74365895/120754272-656e2800-c547-11eb-90b1-b93bb4e0fbef.png"  width="600" height="600">
+
 
 # license
 해당사항 없음
