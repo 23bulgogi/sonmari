@@ -12,7 +12,8 @@
 
 # 사용 방법
 손마리의 사용자는 의사와 환자이며 진료를 시작한 의사가 환자에게 전송할 메시지를 클릭합니다. 이 메시지는 어디가 아프세요와 같이 병원에서 진료 시 자주 묻는 기초적인 질문을 미리 수어영상으로 프로그램 데이터에 등록해놓은 것입니다. 그러면 이 수어 영상이 환자의 모니터에 출력이 됩니다. 다음으로 이 질문을 본 농인 환자가 수어로 질문에 대한 대답을 하면, 프로그램이 해당 수어 동작을 인식하여 문자 언어로 번역을 해서 의사 화면에 출력을 하게 됩니다. 
-<img src="https://user-images.githubusercontent.com/74365895/120751974-d7447280-c543-11eb-9afa-c0a896c8b74c.png"  width="600" height="400">
+
+<img src="https://user-images.githubusercontent.com/74365895/120751974-d7447280-c543-11eb-9afa-c0a896c8b74c.png"  width="800" height="400">
 <img src="https://user-images.githubusercontent.com/74365895/120751990-dc092680-c543-11eb-88fd-e800d170ec9e.png"  width="600" height="400">
 
 # 시연 영상
