@@ -40,7 +40,9 @@ https://wiserloner.tistory.com/m/1247
 <img src="https://user-images.githubusercontent.com/74365895/120754272-656e2800-c547-11eb-90b1-b93bb4e0fbef.png"  width="600" height="600">
 
 
-# license
-해당사항 없음
+# reference
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+https://www.youtube.com/watch?v=7XLu7p8Vatg&t=16s
+
 
 
