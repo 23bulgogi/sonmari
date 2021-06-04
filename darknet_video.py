@@ -9,7 +9,7 @@ from threading import Thread, enumerate
 from queue import Queue
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
-import doctorui
+import sonmari
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 from PyQt5 import QtCore
