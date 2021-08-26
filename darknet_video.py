@@ -15,12 +15,12 @@ from PyQt5 import QtGui
 from PyQt5 import QtCore
 from collections import OrderedDict
 
-continuous = {'감기':["cold1","cold2"], '아니오':["no1","no2"], '콧물':["runnynose1","runnynose2"],
-              '쓰러지다':["fall1","fall2"], '설사':["diarrhea1","diarrhea2"], '입원':["hospitalization1","hospitalization2","hospitalization3"],
-              '퇴원':["hospitalization3","hospitalization2","hospitalization1"],
-              '완쾌':["recovery1","recovery2","recovery3"], '소화불량':["digestion1","digestion2","poor"], '변비':["constipation1","constipation2","constipation3"],
-              '소변':["urine1","urine2"], '수술':["surgery1","surgery2"], '대변':["constipation1","constipation2"], '낫다':["","recovery3"]}
-one = {'3day':'3일', 'yes':'네', 'head':'머리', 'stomach':'배', 'sick':'아프다','reset':'','medicine':'약'}
+continuous = {'감기 ':["cold1","cold2"], '아니오 ':["no1","no2"], '콧물 ':["runnynose1","runnynose2"],
+              '쓰러지다 ':["fall1","fall2"], '설사 ':["diarrhea1","diarrhea2"], '입원 ':["hospitalization1","hospitalization2","hospitalization3"],
+              '퇴원 ':["hospitalization3","hospitalization2","hospitalization1"],
+              '완쾌 ':["recovery1","recovery2","recovery3"], '소화불량 ' :["digestion1","digestion2","poor"], '변비 ':["constipation1","constipation2","constipation3"],
+              '소변 ':["urine1","urine2"], '수술 ':["surgery1","surgery2"],  '낫다 ':["","recovery3"]}
+one = {'3day':'3일 ', 'yes':'네 ', 'head':'머리 ', 'stomach':'배 ', 'sick':'아프다 ','reset':'','medicine':'약 '}
 
 list_of_key = list(continuous.keys())
 list_of_value = list(continuous.values())
@@ -112,6 +112,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
             sentence=list(OrderedDict.fromkeys(list(sentence)))
             window.sentence.setText(''.join(sentence))
+            window.sentence.setFont(QtGui.QFont("고딕",20))
                        
 
             if label != "":
@@ -177,7 +178,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                         if label == 'reset':
                             sentence=[]
                         else:
-                            sentence.append(word)                        
+                            sentence.append(word)    
                         draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                         image = np.array(hand_image)                        
                         break
