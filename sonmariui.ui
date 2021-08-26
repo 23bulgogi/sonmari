@@ -184,6 +184,12 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>나눔스퀘어</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
