@@ -13,7 +13,7 @@ import sonmari
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 from PyQt5 import QtCore
-
+from collections import OrderedDict
 
 continuous = {'감기':["cold1","cold2"], '아니오':["no1","no2"], '콧물':["runnynose1","runnynose2"],
               '쓰러지다':["fall1","fall2"], '설사':["diarrhea1","diarrhea2"], '입원':["hospitalization1","hospitalization2","hospitalization3"],
@@ -66,7 +66,8 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
     random.seed(3)  # deterministic bbox colors
     label = "" #detect 결과를 가져옴
     word = "" #최종 단어를 출력해줌
-    
+    sentence=[]
+
     twice_before_result="" #이전 이전의 결과
     before_result="" #이전 결과
     result = "" #현재 결과
@@ -107,7 +108,9 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
             draw = ImageDraw.Draw(hand_image)
             x1, y1 = 30, 30
 
-            
+            sentence=list(OrderedDict.fromkeys(list(sentence)))
+            draw.text((20, 350), ''.join(sentence), font=ImageFont.truetype('malgun.ttf', 30), fill=(256, 256, 256))    
+            image = np.array(hand_image)             
 
             if label != "":
                 result = label
@@ -115,6 +118,10 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                 
                 #핵심동작 1개인 수화 출력
                 if label in list(one.keys()):
+                    if label == 'reset':
+                        sentence=[]
+                    else:                    
+                        sentence.append(one.get(label))                    
                     draw.text((x1, y1), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     image = np.array(hand_image)
                     
@@ -153,6 +160,10 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                 
 
                 if 'recovery1' not in list_of_3 and label=='recovery3':
+                    if label == 'reset':
+                        sentence=[]
+                    else:
+                        sentence.append('낫다')    
                     draw.text((x1, y1), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     image = np.array(hand_image)
                     
@@ -161,6 +172,10 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                 for i in range(len(list_of_key)):
                     if list_of_2 == list_of_value[i] or list_of_3 == list_of_value[i]:
                         word = list_of_key[i]
+                        if label == 'reset':
+                            sentence=[]
+                        else:
+                            sentence.append(word)                        
                         draw.text((x1, y1), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                         image = np.array(hand_image)                        
                         break
