@@ -29,7 +29,7 @@ def parser():
                         help="path to config file")
     parser.add_argument("--data_file", default="./data/obj.data",
                         help="path to data file")
-    parser.add_argument("--thresh", type=float, default=.40,
+    parser.add_argument("--thresh", type=float, default=.70,
                         help="remove detections with confidence below this value")
     return parser.parse_args()
 
@@ -37,20 +37,22 @@ def parser():
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
-form_class = uic.loadUiType("doctorui.ui")[0]
+form_class = uic.loadUiType("sonmariui.ui")[0]
 
 
 
         
 #화면을 띄우는데 사용되는 Class 선언
-class DoctorWindow(QMainWindow, form_class) :
+class SonmariWindow(QMainWindow, form_class) :
     def __init__(self) :
         super().__init__()
         self.setupUi(self)
 
+        #self.label.setStyleSheet("Color : lightblue")
+
         self.pixmap = QPixmap()
-        self.pixmap.load("icon.png")
-        self.pixmap = self.pixmap.scaledToWidth(70)
+        self.pixmap.load("logo.png")
+        self.pixmap = self.pixmap.scaledToWidth(150)
         self.icon.setPixmap(self.pixmap)
         #아이콘 추가
 
@@ -91,10 +93,10 @@ if __name__ == "__main__" :
     app = QApplication(sys.argv) 
 
     #WindowClass의 인스턴스 생성
-    doctorWindow = DoctorWindow() 
+    sonmariWindow = SonmariWindow() 
 
     #프로그램 화면을 보여주는 코드
-    doctorWindow.show()
+    sonmariWindow.show()
 
     #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
     app.exec_()
