@@ -112,7 +112,6 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
             sentence=list(OrderedDict.fromkeys(list(sentence)))
             window.sentence.setText(''.join(sentence))
-            window.sentence.setFont(QtGui.QFont("고딕",20))
                        
 
             if label != "":
