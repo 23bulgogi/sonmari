@@ -108,9 +108,11 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
             draw = ImageDraw.Draw(hand_image)
             x1, y1 = 30, 30
 
+            #문장 출력
+
             sentence=list(OrderedDict.fromkeys(list(sentence)))
-            draw.text((20, 350), ''.join(sentence), font=ImageFont.truetype('malgun.ttf', 30), fill=(256, 256, 256))    
-            image = np.array(hand_image)             
+            window.sentence.setText(''.join(sentence))
+                       
 
             if label != "":
                 result = label
