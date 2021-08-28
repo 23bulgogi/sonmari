@@ -52,7 +52,7 @@ class SonmariWindow(QMainWindow, form_class) :
 
         self.pixmap = QPixmap()
         self.pixmap.load("logo.png")
-        self.pixmap = self.pixmap.scaledToWidth(100)
+        self.pixmap = self.pixmap.scaledToWidth(150)
         self.icon.setPixmap(self.pixmap)
         #아이콘 추가
 
