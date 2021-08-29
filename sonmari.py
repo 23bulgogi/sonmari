@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5 import uic
 import cv2
 import argparse
-import darknet_video as dv
+import sonmari_video as sv
 import darknet
 from threading import Thread, enumerate
 from queue import Queue
@@ -48,7 +48,6 @@ class SonmariWindow(QMainWindow, form_class) :
         super().__init__()
         self.setupUi(self)
 
-        #self.label.setStyleSheet("Color : lightblue")
 
         self.pixmap = QPixmap()
         self.pixmap.load("logo.png")
@@ -74,10 +73,15 @@ class SonmariWindow(QMainWindow, form_class) :
 
         width = darknet.network_width(network)
         height = darknet.network_height(network)
+        #웹캠을 이용해 캡처
         cap = cv2.VideoCapture(0)
-        Thread(target=dv.video_capture, args=(cap, width, height, frame_queue, darknet_image_queue)).start()
-        Thread(target=dv.inference, args=(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue)).start()
-        Thread(target=dv.drawing, args=(cap, self, args, width, height, class_colors, frame_queue, detections_queue, fps_queue)).start()
+
+        #캡처 쓰레드
+        Thread(target=sv.video_capture, args=(cap, width, height, frame_queue, darknet_image_queue)).start()
+        #detect 쓰레드
+        Thread(target=sv.inference, args=(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue)).start()
+        #출력 쓰레드
+        Thread(target=sv.drawing, args=(cap, self, args, width, height, class_colors, frame_queue, detections_queue, fps_queue)).start()
 
         
 

@@ -20,18 +20,24 @@ continuous = {'감기 ':["cold1","cold2"], '아니오 ':["no1","no2"], '콧물 '
               '퇴원 ':["hospitalization3","hospitalization2","hospitalization1"],
               '완쾌 ':["recovery1","recovery2","recovery3"], '소화불량 ' :["digestion1","digestion2","poor"], '변비 ':["constipation1","constipation2","constipation3"],
               '소변 ':["urine1","urine2"], '수술 ':["surgery1","surgery2"],  '낫다 ':["","recovery3"]}
+#핵심 이미지가 여러개인 수화 동작 저장
+
 one = {'3day':'3일 ', 'yes':'네 ', 'head':'머리 ', 'stomach':'배 ', 'sick':'아프다 ','reset':'','medicine':'약 '}
+#핵심 이미지가 하나인 수화 동작 저장
 
 list_of_key = list(continuous.keys())
 list_of_value = list(continuous.values())
+#단어 별 핵심 이미지들은 value에 저장, 한국어 단어는 key에 저장
 
 b,g,r,a = 255,255,255,0
 fontpath = "fonts/gulim.ttc"
 font = ImageFont.truetype(fontpath, 20)
+#한글을 출력할 폰트 설정
 
 
 
 def video_capture(cap, width, height, frame_queue, darknet_image_queue):
+    #웹캠으로 이미지를 캡처
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -47,6 +53,7 @@ def video_capture(cap, width, height, frame_queue, darknet_image_queue):
 
 
 def inference(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue):
+    #캡처한 이미지를 토대로 detect
     while cap.isOpened():
         darknet_image = darknet_image_queue.get()
         prev_time = time.time()
@@ -61,6 +68,7 @@ def inference(cap, args, network, class_names, darknet_image_queue, detections_q
 
 
 def drawing(cap, window, args, width, height, class_colors, frame_queue, detections_queue, fps_queue):
+    #detect 결과 출력
     random.seed(3)   
     label = ""       #detect 결과(실시간으로 detect된 단어)
     word = ""        #최종으로 출력할 단어
@@ -97,6 +105,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                                 
             label, image = darknet.draw_boxes(detections, frame_resized, class_colors)         
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            #한글을 이미지 위에 출력하기 위해 hand_image로 변환
             hand_image = Image.fromarray(image)
             draw = ImageDraw.Draw(hand_image)
             x, y = 30, 30
@@ -104,7 +113,6 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
             #문장 출력
             sentence=list(OrderedDict.fromkeys(list(sentence)))
             window.sentence.setText(''.join(sentence))
-            window.sentence.setFont(QtGui.QFont("고딕",20))
             
             #디텍션 결과가 null이 아닌 경우에만 cw에 저장
             if label != "":
@@ -117,9 +125,8 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                     else:                    
                         sentence.append(one.get(label))                    
                     draw.text((x, y), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
-                    image = np.array(hand_image)
 
-                # 중복 제거    
+                # 중복된 단어 제거    
                 if pre3_cw == pre2_cw:                     
                     if pre2_cw == pre1_cw:
                         if pre1_cw == cw:
@@ -147,9 +154,9 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                         pre2_cw = pre3_cw
                         pre3_cw = ""
 
-                #세 동작을 저장하는 리스트
+                #현재까지의 세 동작을 저장하는 리스트
                 list_of_3 = [pre2_cw, pre1_cw, cw]
-                #두 동작을 저장하는 리스트
+                #현재까지의 두 동작을 저장하는 리스트
                 list_of_2 = [pre1_cw, cw]
                 
                 #'완쾌'와 독립적으로 '낫다' 출력
@@ -159,7 +166,6 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                     else:
                         sentence.append('낫다')    
                     draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
-                    image = np.array(hand_image)
                     
                     
                 #핵심동작 2개,3개인 수화 출력
@@ -167,13 +173,16 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                     if list_of_2 == list_of_value[i] or list_of_3 == list_of_value[i]:
                         word = list_of_key[i]
                         if label == 'reset':
+                            #리셋 이미지를 인식한 경우 문장 초기화
                             sentence=[]
                         else:
+                            #리셋이 아닐 경우 출력할 문장에 추가
                             sentence.append(word)    
-                        draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
-                        image = np.array(hand_image)                        
+                        draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))                        
                         break                                         
-            
+
+            #detect한 최종 이미지를 UI로 전달
+            image = np.array(hand_image)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             h,w,c = image.shape
             qImg = QtGui.QImage(image.data, w, h, w*c, QtGui.QImage.Format_RGB888)
