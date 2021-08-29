@@ -1,0 +1,189 @@
+from ctypes import *
+import random
+import os
+import cv2
+import time
+import darknet
+import argparse
+from threading import Thread, enumerate
+from queue import Queue
+import numpy as np
+from PIL import ImageFont, ImageDraw, Image
+import sonmari
+from PyQt5 import QtWidgets
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+from collections import OrderedDict
+
+continuous = {'감기 ':["cold1","cold2"], '아니오 ':["no1","no2"], '콧물 ':["runnynose1","runnynose2"],
+              '쓰러지다 ':["fall1","fall2"], '설사 ':["diarrhea1","diarrhea2"], '입원 ':["hospitalization1","hospitalization2","hospitalization3"],
+              '퇴원 ':["hospitalization3","hospitalization2","hospitalization1"],
+              '완쾌 ':["recovery1","recovery2","recovery3"], '소화불량 ' :["digestion1","digestion2","poor"], '변비 ':["constipation1","constipation2","constipation3"],
+              '소변 ':["urine1","urine2"], '수술 ':["surgery1","surgery2"],  '낫다 ':["","recovery3"]}
+one = {'3day':'3일 ', 'yes':'네 ', 'head':'머리 ', 'stomach':'배 ', 'sick':'아프다 ','reset':'','medicine':'약 '}
+
+list_of_key = list(continuous.keys())
+list_of_value = list(continuous.values())
+
+b,g,r,a = 255,255,255,0
+fontpath = "fonts/gulim.ttc"
+font = ImageFont.truetype(fontpath, 20)
+
+
+
+def video_capture(cap, width, height, frame_queue, darknet_image_queue):
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_resized = cv2.resize(frame_rgb, (width, height),
+                                   interpolation=cv2.INTER_LINEAR)
+        frame_queue.put(frame_resized)
+        img_for_detect = darknet.make_image(width, height, 3)
+        darknet.copy_image_from_bytes(img_for_detect, frame_resized.tobytes())
+        darknet_image_queue.put(img_for_detect)
+    cap.release()
+
+
+def inference(cap, args, network, class_names, darknet_image_queue, detections_queue, fps_queue):
+    while cap.isOpened():
+        darknet_image = darknet_image_queue.get()
+        prev_time = time.time()
+        detections = darknet.detect_image(network, class_names, darknet_image, thresh=args.thresh)
+        detections_queue.put(detections)
+        fps = int(1/(time.time() - prev_time))
+        fps_queue.put(fps)
+        print("FPS: {}".format(fps))
+        darknet.print_detections(detections, args.ext_output)
+        darknet.free_image(darknet_image)
+    cap.release()
+
+
+def drawing(cap, window, args, width, height, class_colors, frame_queue, detections_queue, fps_queue):
+    random.seed(3)   
+    label = ""       #detect 결과(실시간으로 detect된 단어)
+    word = ""        #최종으로 출력할 단어
+    sentence=[]      #출력할 문장
+    
+    cw = ""          #현재 단어   
+    pre1_cw = ""     #이전 단어
+    pre2_cw = ""     #이전의 이전 단어
+    pre3_cw = ""     #이전의 이전의 이전 단어
+    
+    print_count = 0
+    
+    while cap.isOpened():         
+        
+        frame_resized = frame_queue.get()
+        detections = detections_queue.get()
+        fps = fps_queue.get()
+
+        if frame_resized is not None:
+
+            #유효한 값들만 저장하도록 저장 결과를 한 칸씩 밀기
+            if pre2_cw != "" and pre1_cw != "" and label != "":
+                pre3_cw = pre2_cw
+                pre2_cw = pre1_cw
+                pre1_cw = label
+                
+            elif pre2_cw == "" and pre1_cw != "" and label != "":
+                pre2_cw = pre1_cw
+                pre1_cw = label
+                
+            elif pre1_cw == "" and label != "":
+                pre1_cw = label
+
+                                
+            label, image = darknet.draw_boxes(detections, frame_resized, class_colors)         
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            hand_image = Image.fromarray(image)
+            draw = ImageDraw.Draw(hand_image)
+            x, y = 30, 30
+
+            #문장 출력
+            sentence=list(OrderedDict.fromkeys(list(sentence)))
+            window.sentence.setText(''.join(sentence))
+            window.sentence.setFont(QtGui.QFont("고딕",20))
+            
+            #디텍션 결과가 null이 아닌 경우에만 cw에 저장
+            if label != "":
+                cw = label
+                              
+                #핵심동작 1개인 수화 출력
+                if label in list(one.keys()):
+                    if label == 'reset':
+                        sentence=[]
+                    else:                    
+                        sentence.append(one.get(label))                    
+                    draw.text((x, y), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
+                    image = np.array(hand_image)
+
+                # 중복 제거    
+                if pre3_cw == pre2_cw:                     
+                    if pre2_cw == pre1_cw:
+                        if pre1_cw == cw:
+                            pre3_cw = ""
+                            pre2_cw = ""
+                            pre1_cw = ""
+                        else :
+                            pre3_cw = ""
+                            pre2_cw = ""
+                    else:
+                        pre3_cw = ""
+                
+                elif pre2_cw == pre1_cw:
+                    if pre1_cw == cw:  
+                        pre1_cw = pre3_cw
+                        pre3_cw = ""
+                        pre2_cw = ""                        
+                    else:
+                        pre2_cw = pre3_cw
+                        pre3_cw = ""                 
+                            
+                elif pre2_cw != pre1_cw:
+                    if pre1_cw == cw :
+                        pre1_cw = pre2_cw
+                        pre2_cw = pre3_cw
+                        pre3_cw = ""
+
+                #세 동작을 저장하는 리스트
+                list_of_3 = [pre2_cw, pre1_cw, cw]
+                #두 동작을 저장하는 리스트
+                list_of_2 = [pre1_cw, cw]
+                
+                #'완쾌'와 독립적으로 '낫다' 출력
+                if 'recovery1' not in list_of_3 and label=='recovery3':
+                    if label == 'reset':
+                        sentence=[]
+                    else:
+                        sentence.append('낫다')    
+                    draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
+                    image = np.array(hand_image)
+                    
+                    
+                #핵심동작 2개,3개인 수화 출력
+                for i in range(len(list_of_key)):
+                    if list_of_2 == list_of_value[i] or list_of_3 == list_of_value[i]:
+                        word = list_of_key[i]
+                        if label == 'reset':
+                            sentence=[]
+                        else:
+                            sentence.append(word)    
+                        draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
+                        image = np.array(hand_image)                        
+                        break                                         
+            
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            h,w,c = image.shape
+            qImg = QtGui.QImage(image.data, w, h, w*c, QtGui.QImage.Format_RGB888)
+            pixmap = QtGui.QPixmap.fromImage(qImg)
+            window.image.setPixmap(pixmap)
+                    
+            if cv2.waitKey(fps) == 27:
+                break
+            #esc누르면 종료
+            
+    cap.release()
+    video.release()
+    cv2.destroyAllWindows()
