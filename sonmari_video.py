@@ -79,12 +79,10 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
     word = ""        #최종으로 출력할 단어
     sentence=[]      #출력할 문장
     
-    result = ""          #현재 결과   
-    pre1_result = ""     #이전 결과
-    pre2_result = ""     #이전의 이전 결과
-    pre3_result = ""     #이전의 이전의 이전 결과
+    result = ""          #현재 결과
+    before_result = ""  #이전 결과
+    result_que = Queue(3) #result들을 저장하는 큐 생성. 현재 결과까지 최대 3개 저장
     
-    print_count = 0
     
     while cap.isOpened():         
         
@@ -93,19 +91,6 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
         fps = fps_queue.get()
 
         if frame_resized is not None:
-
-            #유효한 값들만 저장하도록 이전 저장 결과를 한 칸씩 밀기
-            if pre2_result != "" and pre1_result != "" and label != "":
-                pre3_result = pre2_result
-                pre2_result = pre1_result
-                pre1_result = label
-                
-            elif pre2_result == "" and pre1_result != "" and label != "":
-                pre2_result = pre1_result
-                pre1_result = label
-                
-            elif pre1_result == "" and label != "":
-                pre1_result = label
 
                                 
             label, image = darknet.draw_boxes(detections, frame_resized, class_colors)         
@@ -118,10 +103,25 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
             #문장 출력
             sentence=list(OrderedDict.fromkeys(list(sentence)))
             window.sentence.setText(''.join(sentence))
+
+            #result가 null이 아닌 경우에만 before_result에 저장
+            if result != "":
+                before_result = result
             
             #디텍션 결과가 null이 아닌 경우에만 result에 저장
             if label != "":
                 result = label
+
+                #이전 결과와 현재 결과가 다른 경우에만 결과 큐에 저장
+                if(before_result != result):
+                    if(not result_que.full()):
+                        result_que.put(result)
+                    else:
+                        #큐가 가득 차있으면 원소 제거 후 삽입
+                        result_que.get()
+                        result_que.put(result)
+                
+
                               
                 #핵심동작 1개인 수화 출력
                 if label in list(one.keys()):
@@ -133,57 +133,25 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                         sentence.append(one.get(label))                    
                     draw.text((x, y), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
 
-                
+                list_of_result = list(result_que.queue)
+                #큐를 리스트로 변환
 
-                # 중복된 결과 제거    
-                if pre3_result == pre2_result:                     
-                    if pre2_result == pre1_result:
-                        if pre1_result == result:
-                            pre3_result = ""
-                            pre2_result = ""
-                            pre1_result = ""
-                        else:
-                            pre3_result = ""
-                            pre2_result = ""
-                    else:
-                        pre3_result = ""
-                
-                elif pre2_result == pre1_result:
-                    if pre1_result == result:  
-                        pre1_result = pre3_result
-                        pre3_result = ""
-                        pre2_result = ""                        
-                    else:
-                        pre2_result = pre3_result
-                        pre3_result = ""                 
-                            
-                else:
-                    if pre1_result == result:
-                        pre1_result = pre2_result
-                        pre2_result = pre3_result
-                        pre3_result = ""
-                
-
-                #현재까지의 세 동작을 저장하는 리스트
-                list_of_3 = [pre2_result, pre1_result, result]
-                #현재까지의 두 동작을 저장하는 리스트
-                list_of_2 = [pre1_result, result]
 
                 
                 #'완쾌'와 독립적으로 '낫다' 출력
-                if 'recovery1' not in list_of_3 and label=='recovery3':
-                    sentence.append('낫다')    
+                if 'recovery1' not in list_of_result and label=='recovery3':
+                    sentence.append('낫다 ')    
                     draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     
                     
                 #핵심동작 2개,3개인 수화 출력
                 for i in range(len(list_of_key)):
-                    if list_of_2 == list_of_value[i] or list_of_3 == list_of_value[i]:
+                    if list_of_result == list_of_value[i] or list_of_result[1:] == list_of_value[i]:
                         #현재까지 저장된 result들을 토대로 단어 생성
                         word = list_of_key[i]
                         sentence.append(word)
                         #출력할 문장에 최종 단어 추가
-                        draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))                        
+                        draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                         break                                         
 
 
