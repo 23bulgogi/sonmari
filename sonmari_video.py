@@ -27,6 +27,7 @@ one = {'3day':'3일 ', 'yes':'네 ', 'head':'머리 ', 'stomach':'배 ', 'sick':
 
 list_of_key = list(continuous.keys())
 list_of_value = list(continuous.values())
+#핵심 이미지가 여러개인 단어인 경우,
 #단어 별 핵심 이미지들은 value에 저장, 한국어 단어는 key에 저장
 
 b,g,r,a = 255,255,255,0
@@ -57,10 +58,13 @@ def inference(cap, args, network, class_names, darknet_image_queue, detections_q
     while cap.isOpened():
         darknet_image = darknet_image_queue.get()
         prev_time = time.time()
+        #캡처한 이미지에 대한 detect 결과 가져옴
         detections = darknet.detect_image(network, class_names, darknet_image, thresh=args.thresh)
+        #큐에 detect 결과 추가
         detections_queue.put(detections)
         fps = int(1/(time.time() - prev_time))
         fps_queue.put(fps)
+        #FPS 출력
         print("FPS: {}".format(fps))
         darknet.print_detections(detections, args.ext_output)
         darknet.free_image(darknet_image)
@@ -69,15 +73,16 @@ def inference(cap, args, network, class_names, darknet_image_queue, detections_q
 
 def drawing(cap, window, args, width, height, class_colors, frame_queue, detections_queue, fps_queue):
     #detect 결과 출력
+    
     random.seed(3)   
-    label = ""       #detect 결과(실시간으로 detect된 단어)
+    label = ""       #detect 결과(실시간으로 detect된 이미지)
     word = ""        #최종으로 출력할 단어
     sentence=[]      #출력할 문장
     
-    cw = ""          #현재 단어   
-    pre1_cw = ""     #이전 단어
-    pre2_cw = ""     #이전의 이전 단어
-    pre3_cw = ""     #이전의 이전의 이전 단어
+    result = ""          #현재 결과   
+    pre1_result = ""     #이전 결과
+    pre2_result = ""     #이전의 이전 결과
+    pre3_result = ""     #이전의 이전의 이전 결과
     
     print_count = 0
     
@@ -89,18 +94,18 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
         if frame_resized is not None:
 
-            #유효한 값들만 저장하도록 저장 결과를 한 칸씩 밀기
-            if pre2_cw != "" and pre1_cw != "" and label != "":
-                pre3_cw = pre2_cw
-                pre2_cw = pre1_cw
-                pre1_cw = label
+            #유효한 값들만 저장하도록 이전 저장 결과를 한 칸씩 밀기
+            if pre2_result != "" and pre1_result != "" and label != "":
+                pre3_result = pre2_result
+                pre2_result = pre1_result
+                pre1_result = label
                 
-            elif pre2_cw == "" and pre1_cw != "" and label != "":
-                pre2_cw = pre1_cw
-                pre1_cw = label
+            elif pre2_result == "" and pre1_result != "" and label != "":
+                pre2_result = pre1_result
+                pre1_result = label
                 
-            elif pre1_cw == "" and label != "":
-                pre1_cw = label
+            elif pre1_result == "" and label != "":
+                pre1_result = label
 
                                 
             label, image = darknet.draw_boxes(detections, frame_resized, class_colors)         
@@ -114,72 +119,73 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
             sentence=list(OrderedDict.fromkeys(list(sentence)))
             window.sentence.setText(''.join(sentence))
             
-            #디텍션 결과가 null이 아닌 경우에만 cw에 저장
+            #디텍션 결과가 null이 아닌 경우에만 result에 저장
             if label != "":
-                cw = label
+                result = label
                               
                 #핵심동작 1개인 수화 출력
                 if label in list(one.keys()):
                     if label == 'reset':
+                        #인식한 이미지가 리셋일 경우 문장 초기화
                         sentence=[]
-                    else:                    
+                    else:
+                        #리셋이 아닐경우 문장에 추가
                         sentence.append(one.get(label))                    
                     draw.text((x, y), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
 
-                # 중복된 단어 제거    
-                if pre3_cw == pre2_cw:                     
-                    if pre2_cw == pre1_cw:
-                        if pre1_cw == cw:
-                            pre3_cw = ""
-                            pre2_cw = ""
-                            pre1_cw = ""
-                        else :
-                            pre3_cw = ""
-                            pre2_cw = ""
-                    else:
-                        pre3_cw = ""
                 
-                elif pre2_cw == pre1_cw:
-                    if pre1_cw == cw:  
-                        pre1_cw = pre3_cw
-                        pre3_cw = ""
-                        pre2_cw = ""                        
+
+                # 중복된 결과 제거    
+                if pre3_result == pre2_result:                     
+                    if pre2_result == pre1_result:
+                        if pre1_result == result:
+                            pre3_result = ""
+                            pre2_result = ""
+                            pre1_result = ""
+                        else:
+                            pre3_result = ""
+                            pre2_result = ""
                     else:
-                        pre2_cw = pre3_cw
-                        pre3_cw = ""                 
+                        pre3_result = ""
+                
+                elif pre2_result == pre1_result:
+                    if pre1_result == result:  
+                        pre1_result = pre3_result
+                        pre3_result = ""
+                        pre2_result = ""                        
+                    else:
+                        pre2_result = pre3_result
+                        pre3_result = ""                 
                             
-                elif pre2_cw != pre1_cw:
-                    if pre1_cw == cw :
-                        pre1_cw = pre2_cw
-                        pre2_cw = pre3_cw
-                        pre3_cw = ""
+                else:
+                    if pre1_result == result:
+                        pre1_result = pre2_result
+                        pre2_result = pre3_result
+                        pre3_result = ""
+                
 
                 #현재까지의 세 동작을 저장하는 리스트
-                list_of_3 = [pre2_cw, pre1_cw, cw]
+                list_of_3 = [pre2_result, pre1_result, result]
                 #현재까지의 두 동작을 저장하는 리스트
-                list_of_2 = [pre1_cw, cw]
+                list_of_2 = [pre1_result, result]
+
                 
                 #'완쾌'와 독립적으로 '낫다' 출력
                 if 'recovery1' not in list_of_3 and label=='recovery3':
-                    if label == 'reset':
-                        sentence=[]
-                    else:
-                        sentence.append('낫다')    
+                    sentence.append('낫다')    
                     draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     
                     
                 #핵심동작 2개,3개인 수화 출력
                 for i in range(len(list_of_key)):
                     if list_of_2 == list_of_value[i] or list_of_3 == list_of_value[i]:
+                        #현재까지 저장된 result들을 토대로 단어 생성
                         word = list_of_key[i]
-                        if label == 'reset':
-                            #리셋 이미지를 인식한 경우 문장 초기화
-                            sentence=[]
-                        else:
-                            #리셋이 아닐 경우 출력할 문장에 추가
-                            sentence.append(word)    
+                        sentence.append(word)
+                        #출력할 문장에 최종 단어 추가
                         draw.text((x, y), word, font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))                        
                         break                                         
+
 
             #detect한 최종 이미지를 UI로 전달
             image = np.array(hand_image)
