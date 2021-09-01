@@ -113,7 +113,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                 result = label
 
                 #이전 결과와 현재 결과가 다른 경우에만 결과 큐에 저장
-                if(before_result != result):
+                if(before_result != result and result not in list(one.keys())):
                     if(not result_que.full()):
                         result_que.put(result)
                     else:
@@ -135,6 +135,8 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
                 list_of_result = list(result_que.queue)
                 #큐를 리스트로 변환
+
+                print(list_of_result)
 
 
                 
