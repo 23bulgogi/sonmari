@@ -141,7 +141,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
                 
                 #'완쾌'와 독립적으로 '낫다' 출력
-                if 'recovery1' not in list_of_result and label=='recovery3':
+                if recovery1' not in list_of_result and 'recovery2' not in list_of_result and label=='recovery3':
                     sentence.append('낫다 ')    
                     draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     
