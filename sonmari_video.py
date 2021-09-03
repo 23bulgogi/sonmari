@@ -132,6 +132,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
                         #리셋이 아닐경우 문장에 추가
                         sentence.append(one.get(label))                    
                     draw.text((x, y), one.get(label), font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
+                    result_que = Queue(3)
 
                 list_of_result = list(result_que.queue)
                 #큐를 리스트로 변환
@@ -141,7 +142,7 @@ def drawing(cap, window, args, width, height, class_colors, frame_queue, detecti
 
                 
                 #'완쾌'와 독립적으로 '낫다' 출력
-                if recovery1' not in list_of_result and 'recovery2' not in list_of_result and label=='recovery3':
+                if 'recovery1' not in list_of_result and 'recovery2' not in list_of_result and label=='recovery3':
                     sentence.append('낫다 ')    
                     draw.text((x, y), "낫다", font=ImageFont.truetype('malgun.ttf', 36), fill=(0, 0, 0))
                     
