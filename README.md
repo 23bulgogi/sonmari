@@ -45,23 +45,28 @@ YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 �
 
 위 이미지를 보면 총 34개의 클래스가 있고 각 클래스 별로 최소 200 - 300장의 데이터가 필요하다. 약 10000장의 데이터를 모았고 7:1:1의 비율로 트레이닝셋, 검증셋, 테스트셋으로 나누었다.
 트레이닝셋은 대부분 어두운 옷을 입고 트레이닝을 진행했고, 검증셋은 대부분 밝고 다양한 옷을 입어 YOLO의 성능을 정확히 측정하도록 했다.
+
 <img src="https://user-images.githubusercontent.com/74365895/132083392-9f49d4c6-9ed6-4065-8f7d-f873a818c5dd.jpg"  width="400" height="400">
+
 <img src="https://user-images.githubusercontent.com/74365895/132083394-cdf2f022-4623-4a78-befc-50c00c3341a8.jpg"  width="400" height="400">
 
 차례대로 트레이닝셋과 검증셋이다.
 라벨링은 labelImg 툴을 이용해 스탠다드하게 직사각형 모양으로 라벨링한 뒤 박스의 좌표값들에 대한 txt 파일을 저장해주었다.
+
 <img src="https://user-images.githubusercontent.com/74365895/132083397-e37a0a14-046a-43a0-88c8-d834a1406ca7.png"  width="400" height="400">
 
 
 
 # 트레이닝 방법
 YOLO를 이용해 트레이닝하면 중간중간에 검증셋을 이용해 정확도를 측정해준다. 이에 따라 가장 성능이 좋은 가중치 파일을 선택한다.
+
 <img src="https://user-images.githubusercontent.com/74365895/132083511-cda04b4b-128b-4daa-add1-5dd76490599d.png"  width="600" height="600">
 
 
 # 최종 정확도
 테스트셋에 대한 최종 정확도를 출력한 결과다.
 다른 사람의 손동작을 이용해 테스트셋을 만들고 그에 따른 정확도를 클래스별로 출력했다.
+
 <img src="https://user-images.githubusercontent.com/74365895/132082465-1c626d9c-de55-40b9-8677-79ae6d570b5e.png"  width="640" height="692">
 
 
