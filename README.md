@@ -53,7 +53,7 @@ YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 �
 차례대로 트레이닝셋과 검증셋이다.
 라벨링은 labelImg 툴을 이용해 스탠다드하게 직사각형 모양으로 라벨링한 뒤 박스의 좌표값들에 대한 txt 파일을 저장해주었다.
 
-<img src="https://user-images.githubusercontent.com/74365895/132083397-e37a0a14-046a-43a0-88c8-d834a1406ca7.png"  width="400" height="400">
+<img src="https://user-images.githubusercontent.com/74365895/132083397-e37a0a14-046a-43a0-88c8-d834a1406ca7.png"  width="800" height="400">
 
 
 
@@ -67,7 +67,7 @@ YOLO를 이용해 트레이닝하면 중간중간에 검증셋을 이용해 정�
 테스트셋에 대한 최종 정확도를 출력한 결과다.
 다른 사람의 손동작을 이용해 테스트셋을 만들고 그에 따른 정확도를 클래스별로 출력했다.
 
-<img src="https://user-images.githubusercontent.com/74365895/132082465-1c626d9c-de55-40b9-8677-79ae6d570b5e.png"  width="640" height="692">
+<img src="https://user-images.githubusercontent.com/74365895/132083595-f0396d20-a029-46be-9089-38191b5f26cd.png"  width="640" height="692">
 
 
 # reference
