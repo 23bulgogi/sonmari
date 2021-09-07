@@ -2,8 +2,12 @@
 수어 번역 프로그램입니다.
 
 개발언어 : Python
-라이브러리 : 오픈cv, YOLO, PYQT5
+
+라이브러리 : 오픈cv, YOLO, PYQT5, CUDA
+
 HW 개발환경 : GPU(NVIDIA 지포스 RTX 2070) 내장 노트북, 노트북 웹캠
+
+
 
 # 프로젝트 소개
 수어를 한국어로 번역해주는 병원용 수어 번역 프로그램을 개발한다. 컴퓨터 카메라에 수어 동작을 비추면 해당되는 한국어를 출력해주는 것이다.
@@ -12,10 +16,14 @@ HW 개발환경 : GPU(NVIDIA 지포스 RTX 2070) 내장 노트북, 노트북 웹
 
 이로써 의사가 청각장애인의 수어 동작을 이해할 수 있게 되고, 진료에 도움을 줄 수 있을 것이다.
 
+
+
 # 필요 하드웨어
 <img src="https://user-images.githubusercontent.com/74365895/132035599-0b286730-bd4e-4b04-8e50-c774215b6876.jpg"  width="800" height="400">
 
 GPU가 내장된 노트북 한대와 수어 동작을 촬영하는 웹캠이 필요하다.
+
+
 
 # 시작하기
 
@@ -24,6 +32,7 @@ GPU가 내장된 노트북 한대와 수어 동작을 촬영하는 웹캠이 필
 2. 해당 손마리 프로그램을 clone
 
 3. 다운받은 폴더로 이동해서 cmd 창에서 python sonmari.py 입력
+
 
 
 # 사용 방법
@@ -40,9 +49,12 @@ GPU가 내장된 노트북 한대와 수어 동작을 촬영하는 웹캠이 필
 <img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif"  width="800" height="450">
 
 
+
 # 시연 영상
 
 < https://youtu.be/WgXRq9RozLM >
+
+
 
 # 필요 기술 설명
 
@@ -62,11 +74,16 @@ YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 �
 <img src="https://user-images.githubusercontent.com/74365895/120752859-4a9ab400-c545-11eb-9f7b-ce19e137ae6f.png"  width="800" height="400">
 
 
+
+
 # 번역 단어
 
 이틀,삼일,감기,콧물,쓰러지다,설사,예,아니,머리,배,아프다,입원,퇴원 등 총 20개 단어에 대한 번역을 제공하고, 리셋 동작을 인식해 문장을 초기화한다.
 
 <img src="https://user-images.githubusercontent.com/74365895/132034383-fb3dbb94-402a-4e70-977f-89c9e2f481f0.jpg"  width="800" height="400">
+
+
+
 
 # 데이터 모으기
 
@@ -98,12 +115,14 @@ YOLO를 이용해 트레이닝하면 자동으로 중간중간에 검증셋을 �
 <img src="https://user-images.githubusercontent.com/74365895/132083511-cda04b4b-128b-4daa-add1-5dd76490599d.png"  width="600" height="600">
 
 
+
 # 최종 정확도
 
 테스트셋에 대한 최종 정확도를 출력한 결과다.
 다른 사람의 손동작을 이용해 테스트셋을 만들고 그에 따른 정확도를 클래스별로 출력했다.
 
 <img src="https://user-images.githubusercontent.com/74365895/132083595-f0396d20-a029-46be-9089-38191b5f26cd.png"  width="640" height="692">
+
 
 
 # reference
@@ -123,9 +142,10 @@ https://github.com/Cartucho/mAP
 https://github.com/tzutalin/labelImg
 
 
+
 # 이후 발전시킬 부분
 
-이 프로그램은 YOLO의 설치가 필수적이다. 
+이 프로그램은 YOLO의 설치가 필수적이다.
 YOLO 설치 없이도 위 프로그램을 실행할 수 있도록 배포하는 것이 큰 과제이다.
 향후 이를 해결할 예정이다.
 
