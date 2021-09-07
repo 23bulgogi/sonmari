@@ -50,8 +50,7 @@ RNN과 CNN의 결합으로 동적인 영상에 대한 번역을 구현한 경우
 
 '빠른 속도를 내면서도 영상을 번역할 수는 없을까?'라는 고민을 하게 되었고 그 과정에서 빠른 속도로 실시간 객체 탐지를 제공하는 YOLO를 찾게 되었다.
 
-YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 제공하는 오픈소스 툴이다. 
-기존의 R-CNN과 달리 합성곱 신경망을 단 한번 통과 시키고, 이로 인해 속도가 매우 빠르고 실시간에 용이하다는 장점이 있다.
+YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 제공하는 오픈소스 툴이다.
 
 <img src="https://user-images.githubusercontent.com/74365895/120753068-977e8a80-c545-11eb-8ac1-7914844aac8c.png"  width="800" height="400">
 
@@ -79,8 +78,7 @@ YOLO는 실시간으로 매우 빠른 속도의 이미지에 대한 번역을 �
 만약 다른 단어에 대한 트레이닝을 진행할 예정이라면 아래와 같이 데이터를 모으고, 최대한 다양한 각도와 환경, 다양한 옷을 입고 데이터를 모으기를 권장한다. 
 최소 200장에서 300장까지 모으는 것이 좋다.
 
-<img src="https://user-images.githubusercontent.com/74365895/132083392-9f49d4c6-9ed6-4065-8f7d-f873a818c5dd.jpg"  width="400" height="400">
-<img src="https://user-images.githubusercontent.com/74365895/132083394-cdf2f022-4623-4a78-befc-50c00c3341a8.jpg"  width="400" height="400">
+<img src="https://user-images.githubusercontent.com/74365895/132083392-9f49d4c6-9ed6-4065-8f7d-f873a818c5dd.jpg"  width="400" height="400"><img src="https://user-images.githubusercontent.com/74365895/132083394-cdf2f022-4623-4a78-befc-50c00c3341a8.jpg"  width="400" height="400">
 
 차례대로 트레이닝셋과 검증셋이다.
 라벨링은 labelImg 툴을 이용해 스탠다드하게 직사각형 모양으로 라벨링한 뒤 박스의 좌표값들에 대한 txt 파일을 저장해주었다.
