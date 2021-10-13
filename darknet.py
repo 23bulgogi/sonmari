@@ -183,45 +183,24 @@ def detect_image(network, class_names, image, thresh=.5, hier_thresh=.5, nms=.45
 
 #  lib = CDLL("/home/pjreddie/documents/darknet/libdarknet.so", RTLD_GLOBAL)
 #  lib = CDLL("libdarknet.so", RTLD_GLOBAL)
-hasGPU = True
+hasGPU = False
 if os.name == "nt":
     cwd = os.getcwd()
     os.environ['PATH'] = cwd + ';' + os.environ['PATH']
-    winGPUdll = os.path.join(cwd, "yolo_cpp_dll.dll")
-    winNoGPUdll = os.path.join(cwd, "yolo_cpp_dll_nogpu.dll")
+    #winGPUdll = os.path.join(cwd, "yolo_cpp_dll.dll")
+    winNoGPUdll = os.path.join(cwd, "yolo_cpp_dll_no_gpu.dll")
     envKeys = list()
     for k, v in os.environ.items():
         envKeys.append(k)
-    try:
-        try:
-            tmp = os.environ["FORCE_CPU"].lower()
-            if tmp in ["1", "true", "yes", "on"]:
-                raise ValueError("ForceCPU")
-            else:
-                print("Flag value {} not forcing CPU mode".format(tmp))
-        except KeyError:
-            # We never set the flag
-            if 'CUDA_VISIBLE_DEVICES' in envKeys:
-                if int(os.environ['CUDA_VISIBLE_DEVICES']) < 0:
-                    raise ValueError("ForceCPU")
-            try:
-                global DARKNET_FORCE_CPU
-                if DARKNET_FORCE_CPU:
-                    raise ValueError("ForceCPU")
-            except NameError as cpu_error:
-                print(cpu_error)
-        if not os.path.exists(winGPUdll):
-            raise ValueError("NoDLL")
-        lib = CDLL(winGPUdll, RTLD_GLOBAL)
-    except (KeyError, ValueError):
-        hasGPU = False
-        if os.path.exists(winNoGPUdll):
-            lib = CDLL(winNoGPUdll, RTLD_GLOBAL)
-            print("Notice: CPU-only mode")
-        else:
-            # Try the other way, in case no_gpu was compile but not renamed
-            lib = CDLL(winGPUdll, RTLD_GLOBAL)
-            print("Environment variables indicated a CPU run, but we didn't find {}. Trying a GPU run anyway.".format(winNoGPUdll))
+    
+    if os.path.exists(winNoGPUdll):
+        lib = CDLL(winNoGPUdll, RTLD_GLOBAL)
+        print("Notice: CPU-only mode")
+        
+    #else:
+        # Try the other way, in case no_gpu was compile but not renamed
+        #lib = CDLL(winGPUdll, RTLD_GLOBAL)
+        #print("Environment variables indicated a CPU run, but we didn't find {}. Trying a GPU run anyway.".format(winNoGPUdll))
 else:
     lib = CDLL("./libdarknet.so", RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
