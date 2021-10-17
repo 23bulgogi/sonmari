@@ -34,7 +34,7 @@
 - webcam
 
 
-  - Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고
+Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고
 
 
 
