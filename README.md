@@ -48,12 +48,11 @@ Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고
 ### Custom YOLO Model
 
 
+1. 이미지 데이터를 수집한다. 다운받아서 사용할 수 있도록 웹에 오픈되어 있는 수어 이미지 데이터가 거의 없기 때문에, 이미지를 직접 촬영하여 수집하였다. 수집한 데이터를 수집한 데이터를 트레이닝셋, 검증셋, 테스트셋을 7:1:1의 비율로 나누었다.
   
-  1. 이미지 데이터를 수집한다. 다운받아서 사용할 수 있도록 웹에 오픈되어 있는 수어 이미지 데이터가 거의 없기 때문에, 이미지를 직접 촬영하여 수집하였다. 수집한 데이터를 수집한 데이터를 트레이닝셋, 검증셋, 테스트셋을 7:1:1의 비율로 나누었다.
+2. 이미지를 라벨링한다. 이미지를 모델에 학습시키기 위해서 라벨링 툴을 이용해 필요한 이미지를 라벨링 해야한다. 라벨링 툴으로는 laeblImg 를 이용하였다. labelImg 설치 및 사용 : https://github.com/tzutalin/labelImg 참고. labelImg를 이용할 때 모드를 YOLO로 설정하여 결과물이 txt파일로 저장되도록 해야한다.
   
-  2. 이미지를 라벨링한다. 이미지를 모델에 학습시키기 위해서 라벨링 툴을 이용해 필요한 이미지를 라벨링 해야한다. 라벨링 툴으로는 laeblImg 를 이용하였다. labelImg 설치 및 사용 : https://github.com/tzutalin/labelImg 참고. labelImg를 이용할 때 모드를 YOLO로 설정하여 결과물이 txt파일로 저장되도록 해야한다.
-  
-  3. custom data를 훈련시키기 위해서는 아래의 파일들이 필요하다.
+3. custom data를 훈련시키기 위해서는 아래의 파일들이 필요하다.
   ```
   obj.data     
   obj.cfg    
@@ -61,12 +60,12 @@ Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고
   train.txt   
   valid.txt    
   ```
-  4. darknet에서 제공하는 Yolov4의 pretrain 모델([yolov4.conv.137](https://drive.google.com/file/d/1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp/view))을 다운 받은 후 훈련을 시작한다. 
+4. darknet에서 제공하는 Yolov4의 pretrain 모델([yolov4.conv.137](https://drive.google.com/file/d/1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp/view))을 다운 받은 후 훈련을 시작한다. 
 
 
 
 
-  5. Train YOLOv4 
+5. Train YOLOv4 
  ```
 ./darknet detector train custom/obj.data custom/obj.cfg yolov4.conv.137 -map
 ```
