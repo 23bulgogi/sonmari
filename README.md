@@ -42,7 +42,8 @@ Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고
 
 # Development Guide
 
-
+### Code of conduct
+View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
 
 ### Custom YOLO Model
 
