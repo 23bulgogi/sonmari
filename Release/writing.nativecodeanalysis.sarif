@@ -1,0 +1,505 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "산술 오버플로: 4 바이트 값의 '+' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '+' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Yolo_v4/darknet/src/activations.h"
+                },
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 61,
+                  "endLine": 72,
+                  "endColumn": 101
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "gelu_activate",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "suppressions": []
+        },
+        {
+          "ruleId": "C6328",
+          "message": {
+            "text": "크기 불일치: 'unsigned __int64'이(가) _Param_(8)으로 전달되었습니다. 다음 호출에는 'int'이(가) 필요합니다. 'printf'. "
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Yolo_v4/darknet/src/writing.c"
+                },
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 9,
+                  "endLine": 68,
+                  "endColumn": 185
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "train_writing",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "suppressions": []
+        },
+        {
+          "ruleId": "C6031",
+          "message": {
+            "text": "반환 값이 무시되었습니다. 'strtok'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Yolo_v4/darknet/src/writing.c"
+                },
+                "region": {
+                  "startLine": 103,
+                  "startColumn": 13,
+                  "endLine": 103,
+                  "endColumn": 27
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "test_writing",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "suppressions": []
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.28.29913.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x64\\c1.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x002FB1C0 -il C:\\Users\\cyber\\AppData\\Local\\Temp\\_CL_966ea292ast -typedil -f ..\\..\\src\\writing.c -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1928 -D_MSC_FULL_VER=192829913 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -I D:\\include -I C:\\opencv_3.0\\opencv\\build\\include -I D:\\Yolo_v4\\darknet\\include -I D:\\Yolo_v4\\darknet\\3rdparty\\stb\\include -I D:\\Yolo_v4\\darknet\\3rdparty\\pthreads\\include -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -GF -Og -Ot -Oy -Oi -ltcg -DCODE_ANALYSIS -DLIB_EXPORTS -D_TIMESPEC_DEFINED -D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS -DWIN32 -DNDEBUG -D_CONSOLE -D_LIB -D_WINDLL -D_MBCS -D_MT -D_DLL -GS -D_M_FP_PRECISE -omp -D_OPENMP=200203 -Fox64\\Release\\writing.obj -Fdx64\\Release\\vc142.pdb -Gd -analyze:projectdirectory D:\\Yolo_v4\\darknet\\build\\darknet -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.6.1\\Include\\um -MPdiagMutex 00000000000006E8",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/activations.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3b1b337021368fb37940b58c3a7dcb0a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/art.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a47d39f312f9e8f82bfe20a95c19c257"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/network.h"
+          },
+          "hashes": {
+            "md5": "5ebf74737dbcc45f64a509017894d549"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/include/darknet.h"
+          },
+          "hashes": {
+            "md5": "0e8f873ef06a1c5901fe98c150505d57"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/3rdparty/pthreads/include/pthread.h"
+          },
+          "hashes": {
+            "md5": "cfdb57a8e93ee1ed9322908f49a750d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/3rdparty/pthreads/include/sched.h"
+          },
+          "hashes": {
+            "md5": "c5a43cedb09a101de53e86e83e2c0a69"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/layer.h"
+          },
+          "hashes": {
+            "md5": "ba7076a51a91d92c3b5a096e0ba1f250"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/dark_cuda.h"
+          },
+          "hashes": {
+            "md5": "9c9b2fdd1d83eedad0c88f11ae2cd552"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/utils.h"
+          },
+          "hashes": {
+            "md5": "299eeeee4a60cbdc17e06e30342eda39"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/list.h"
+          },
+          "hashes": {
+            "md5": "97077893dce6e1d7734af5a68a43db92"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/tree.h"
+          },
+          "hashes": {
+            "md5": "26692b679abe14f5b38b2a6b8d8695be"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/image.h"
+          },
+          "hashes": {
+            "md5": "a1acec7437b83ff60b3467edf1e1f2c6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/image_opencv.h"
+          },
+          "hashes": {
+            "md5": "16aab89d5196db07f6c6df9d0e6b5da1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/matrix.h"
+          },
+          "hashes": {
+            "md5": "4353570eb8c63abe83ba9a9a7e88d408"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/box.h"
+          },
+          "hashes": {
+            "md5": "89df6e0a036de535a3a74b608e277a98"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/data.h"
+          },
+          "hashes": {
+            "md5": "058308dfe7fac821a37ca5eea920d1ac"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/parser.h"
+          },
+          "hashes": {
+            "md5": "cf729b6b99eae5a1316fb9cae2e0d648"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/option_list.h"
+          },
+          "hashes": {
+            "md5": "d70744dd5a252a892195f37c2d3d9feb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/blas.h"
+          },
+          "hashes": {
+            "md5": "5dcde0021b84c4ac39598ef867891bf5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/classifier.h"
+          },
+          "hashes": {
+            "md5": "490c5245beaedf645928a3f0776c1e1a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/gettimeofday.h"
+          },
+          "hashes": {
+            "md5": "46a907bee1c0ecf512b1e2be3d23b056"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/crnn_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "7da964cb9621e7cc315613b737067577"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/crnn_layer.h"
+          },
+          "hashes": {
+            "md5": "e8abbc5262e0cec214f7330ee2fcb39c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/convolutional_layer.h"
+          },
+          "hashes": {
+            "md5": "908dca8f1d9493ebe967667a8dd34d54"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/gemm.h"
+          },
+          "hashes": {
+            "md5": "61cf07544beff63cb6e7c8d676be32fd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/deconvolutional_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6755f5f3729475928540d9372e853db3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/deconvolutional_layer.h"
+          },
+          "hashes": {
+            "md5": "859cfe053d1238c4db505badd1e90c60"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/im2col.h"
+          },
+          "hashes": {
+            "md5": "1be6ec2f4c71d8f88b5d1f5b71c11fcb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/col2im.h"
+          },
+          "hashes": {
+            "md5": "8aa975e258da342b579341d312dbb10c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/detection_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "5102d6d9beda827e89cc98703baefef7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/detection_layer.h"
+          },
+          "hashes": {
+            "md5": "94795d2f3532908c7f01f624dd0667cd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/softmax_layer.h"
+          },
+          "hashes": {
+            "md5": "ec8b5f99e776f3b4c207b08373f1eb82"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/reorg_old_layer.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "9285569f6fee7dea662ec2336869fb44"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/reorg_old_layer.h"
+          },
+          "hashes": {
+            "md5": "9534585a46bb33914990cb44b8a01a21"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/rnn_vid.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "aef8b8fd91a11832db6eeccbf54e82f8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/cost_layer.h"
+          },
+          "hashes": {
+            "md5": "32b2dc0bea406453d1da068bc3d69ce0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/sam_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "22ed2d566b4c834c1aa7f3564f2e8265"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/sam_layer.h"
+          },
+          "hashes": {
+            "md5": "2ad2c80730b6ed5886b270d519bc6e87"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/shortcut_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "2c16b7aef86042476379a7aeb3f0ba38"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/shortcut_layer.h"
+          },
+          "hashes": {
+            "md5": "e5d29e4977bd26539d052310061e5ada"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/swag.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "2443d8e662eff561583f6943aae89471"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/upsample_layer.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0194a855aeb99a4b2387d694c660dafa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/yolo_v4/darknet/src/upsample_layer.h"
+          },
+          "hashes": {
+            "md5": "6e126b193a48e3cf23ed1139fc664a61"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Yolo_v4/darknet/src/writing.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "9070fe41a85f58999f21a73f507dbd20"
+          }
+        }
+      ]
+    }
+  ]
+}

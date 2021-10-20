@@ -1,0 +1,127 @@
+..\..\3rdparty\pthreads\include\pthread.h
+..\..\3rdparty\pthreads\include\sched.h
+..\..\include\darknet.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\cmath
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\concurrencysal.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\crtdefs.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\cstdlib
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\intrin0.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\limits.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\sal.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\stdint.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\use_ansi.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vadefs.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vcruntime_new.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vcruntime_new_debug.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vcruntime_string.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\xkeycheck.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\xtr1common
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\yvals.h
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\yvals_core.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\assert.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_malloc.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_memcpy_s.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_memory.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_search.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_stdio_config.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstring.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wtime.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\crtdbg.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\errno.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\float.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\math.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stddef.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdlib.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\time.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\builtin_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\channel_descriptor.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\common_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\device_double_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\device_double_functions.hpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\device_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\device_functions.hpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\host_config.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\host_defines.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\math_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\math_functions.hpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\crt\sm_70_rt.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cublas_api.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cublas_v2.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuComplex.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_device_runtime_api.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_fp16.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_fp16.hpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_runtime.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_runtime_api.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_surface_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cuda_texture_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\cudnn.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\curand.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\device_atomic_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\device_launch_parameters.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\device_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\driver_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\driver_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\library_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_20_atomic_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_20_intrinsics.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_30_intrinsics.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_32_atomic_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_32_intrinsics.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_35_atomic_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_35_intrinsics.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_60_atomic_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\sm_61_intrinsics.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\surface_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\surface_indirect_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\surface_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\texture_fetch_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\texture_indirect_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\texture_types.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\vector_functions.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\vector_functions.hpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\include\vector_types.h
+D:\Yolo_v4\darknet\src\activations.h
+D:\Yolo_v4\darknet\src\activation_layer.h
+D:\Yolo_v4\darknet\src\avgpool_layer.h
+D:\Yolo_v4\darknet\src\batchnorm_layer.h
+D:\Yolo_v4\darknet\src\blas.h
+D:\Yolo_v4\darknet\src\box.h
+D:\Yolo_v4\darknet\src\connected_layer.h
+D:\Yolo_v4\darknet\src\convolutional_layer.h
+D:\Yolo_v4\darknet\src\cost_layer.h
+D:\Yolo_v4\darknet\src\crnn_layer.h
+D:\Yolo_v4\darknet\src\crop_layer.h
+D:\Yolo_v4\darknet\src\dark_cuda.h
+D:\Yolo_v4\darknet\src\data.h
+D:\Yolo_v4\darknet\src\detection_layer.h
+D:\Yolo_v4\darknet\src\dropout_layer.h
+D:\Yolo_v4\darknet\src\gru_layer.h
+D:\Yolo_v4\darknet\src\http_stream.h
+D:\Yolo_v4\darknet\src\image.h
+D:\Yolo_v4\darknet\src\image_opencv.h
+D:\Yolo_v4\darknet\src\layer.h
+D:\Yolo_v4\darknet\src\list.h
+D:\Yolo_v4\darknet\src\local_layer.h
+D:\Yolo_v4\darknet\src\matrix.h
+D:\Yolo_v4\darknet\src\maxpool_layer.h
+D:\Yolo_v4\darknet\src\network.h
+D:\Yolo_v4\darknet\src\network_kernels.cu
+D:\Yolo_v4\darknet\src\normalization_layer.h
+D:\Yolo_v4\darknet\src\parser.h
+D:\Yolo_v4\darknet\src\region_layer.h
+D:\Yolo_v4\darknet\src\reorg_layer.h
+D:\Yolo_v4\darknet\src\rnn_layer.h
+D:\Yolo_v4\darknet\src\route_layer.h
+D:\Yolo_v4\darknet\src\shortcut_layer.h
+D:\Yolo_v4\darknet\src\softmax_layer.h
+D:\Yolo_v4\darknet\src\tree.h
+D:\Yolo_v4\darknet\src\utils.h

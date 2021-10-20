@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>activations.h</FILENAME>
+      <LINE>72</LINE>
+      <COLUMN>62</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '+' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '+' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>gelu_activate</FUNCTION>
+    <DECORATED>gelu_activate</DECORATED>
+    <FUNCLINE>72</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>46</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_shortcut_layer</FUNCTION>
+    <DECORATED>make_shortcut_layer</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>47</LINE>
+      <COLUMN>41</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_shortcut_layer</FUNCTION>
+    <DECORATED>make_shortcut_layer</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>88</LINE>
+      <COLUMN>43</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_shortcut_layer</FUNCTION>
+    <DECORATED>make_shortcut_layer</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>88</LINE>
+      <COLUMN>33</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_shortcut_layer</FUNCTION>
+    <DECORATED>make_shortcut_layer</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>88</LINE>
+      <COLUMN>23</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_shortcut_layer</FUNCTION>
+    <DECORATED>make_shortcut_layer</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>115</LINE>
+      <COLUMN>94</COLUMN>
+    </SFA>
+    <DEFECTCODE>6308</DEFECTCODE>
+    <DESCRIPTION>'realloc'는 null 포인터를 반환할 수 있습니다. 'realloc'에 인수로 전달되는 'l-&gt;activation_input'에 null 포인터를 할당하면 원래 메모리 블록에서 누수가 발생할 수 있습니다.</DESCRIPTION>
+    <FUNCTION>resize_shortcut_layer</FUNCTION>
+    <DECORATED>resize_shortcut_layer</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>102</LINE>
+      <COLUMN>67</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>resize_shortcut_layer</FUNCTION>
+    <DECORATED>resize_shortcut_layer</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>103</LINE>
+      <COLUMN>55</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>resize_shortcut_layer</FUNCTION>
+    <DECORATED>resize_shortcut_layer</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>115</LINE>
+      <COLUMN>124</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>resize_shortcut_layer</FUNCTION>
+    <DECORATED>resize_shortcut_layer</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>shortcut_layer.c</FILENAME>
+      <LINE>159</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>6993</DEFECTCODE>
+    <DESCRIPTION>코드 분석에서 OpenMP 구문이 무시되고 단일 스레드 코드를 분석합니다.</DESCRIPTION>
+    <FUNCTION></FUNCTION>
+    <DECORATED></DECORATED>
+    <FUNCLINE>0</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

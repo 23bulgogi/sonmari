@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>activations.h</FILENAME>
+      <LINE>72</LINE>
+      <COLUMN>62</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '+' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '+' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>gelu_activate</FUNCTION>
+    <DECORATED>gelu_activate</DECORATED>
+    <FUNCLINE>72</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>31</LINE>
+      <COLUMN>37</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_detection_layer</FUNCTION>
+    <DECORATED>make_detection_layer</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>32</LINE>
+      <COLUMN>36</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>make_detection_layer</FUNCTION>
+    <DECORATED>make_detection_layer</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>53</LINE>
+      <COLUMN>43</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>99</LINE>
+      <COLUMN>82</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '-' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '-' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>136</LINE>
+      <COLUMN>30</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>161</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '-' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '-' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>178</LINE>
+      <COLUMN>34</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '-' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '-' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>185</LINE>
+      <COLUMN>63</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\Yolo_v4\darknet\src\</FILEPATH>
+      <FILENAME>detection_layer.c</FILENAME>
+      <LINE>185</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>산술 오버플로: 4 바이트 값의 '*' 연산자를 사용한 다음 결과를 8 바이트 값에 캐스트합니다. 오버플로를 방지하려면 '*' 연산자를 호출하기 전에 더 광범위한 형식에 값을 캐스트합니다(io.2).</DESCRIPTION>
+    <FUNCTION>forward_detection_layer</FUNCTION>
+    <DECORATED>forward_detection_layer</DECORATED>
+    <FUNCLINE>49</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
