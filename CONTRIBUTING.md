@@ -1,5 +1,5 @@
 
-# Contributing to sonmari
+# Contributing to Sonmari
 
 sonmari 프로젝트에 참여해주셔서 감사합니다. sonmari 프로젝트에 contribute 하는 방법을 소개합니다.
 
