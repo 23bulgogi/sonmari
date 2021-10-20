@@ -45,7 +45,7 @@ Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonma
 View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
 
 ### Setting-up dev. environment
- * Refer [BUILD](https://github.com/23bulgogi/sonmari/blob/main/BUILD.md).
+Refer [BUILD](https://github.com/23bulgogi/sonmari/blob/main/BUILD.md).
 
 ### Training custom YOLO model
 
