@@ -31,22 +31,23 @@ Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonma
     * For testing, GPU is not needed.
 
 ### Software requirements
-- Python 3.6
-- OpenCV 3.x
-- CMAKE 3.18
-- CUDA 10.2
-- cuDNN 8.0.2
-- PYQT5
+ - Python 3.6
+ - OpenCV 3.x
+ - CMAKE 3.18
+ - CUDA 10.2
+ - cuDNN 8.0.2
+ - PYQT5
 
-Yolov4 설치 : https://wiserloner.tistory.com/m/1247 참고 
 
 ## Development Guide
 
 ### Code of conduct
 View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
 
-### Custom YOLO Model
+### Setting-up dev. environment
+ * Refer [BUILD](https://github.com/23bulgogi/sonmari/blob/main/BUILD.md).
 
+### Training custom YOLO model
 
 1. 이미지 데이터를 수집한다. 다운받아서 사용할 수 있도록 웹에 오픈되어 있는 수어 이미지 데이터가 거의 없기 때문에, 이미지를 직접 촬영하여 수집하였다. 직접 수집한 약 10000장의 데이터를 7:1:1의 비율로 트레이닝셋, 검증셋, 테스트셋으로 나누었다.
   
@@ -62,12 +63,9 @@ View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CO
   valid.txt    
   ```
 4. darknet에서 제공하는 Yolov4의 pretrain 모델([yolov4.conv.137](https://drive.google.com/file/d/1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp/view))을 다운 받은 후 훈련을 시작한다. 
-
-
-
-
 5. train YOLOv4 
- ```
+
+```
 ./darknet detector train custom/obj.data custom/obj.cfg yolov4.conv.137 -map
 ```
 
@@ -77,8 +75,6 @@ View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CO
 
 <img src="https://user-images.githubusercontent.com/74365895/132083595-f0396d20-a029-46be-9089-38191b5f26cd.png"  width="640" height="692">
 
-
-
 ### Testing 
 
 darknet.py 와 sonmari_video.py를 다운받은 후 sonmari_video.py를 실행한다. weights 파일은 training 결과로 얻은 것을 이용한다.
@@ -86,7 +82,7 @@ darknet.py 와 sonmari_video.py를 다운받은 후 sonmari_video.py를 실행�
 sonmari_video.py
 ```
 
-### Using sonmari
+## Using sonmari
 
 logo.png, sonmari.py, sonmariui.ui 를 sonmari_video.py 와 같은 경로에 다운받은 후 sonmari.py를 실행한다.
 ```
@@ -101,8 +97,7 @@ sonmari.py
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/23bulgogi/sonmari/blob/main/LICENSE) file for details
 
-
-# References
+## References
 
  * YOLO를 이용한 커스텀 데이터 트레이닝
     * https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
