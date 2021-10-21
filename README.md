@@ -22,7 +22,6 @@ Open-source Sign language translator using deep learning model
 
 ## Build Guide
 
-### 내용 수정해야함
 
 ### Requirements
 Download all following requirements.
@@ -32,25 +31,27 @@ Download all following requirements.
  - pyinstaller
 
 
-Clone main branch and unzip the file
+### Clone main branch and unzip the file
 
-Move to src directory
+### Move to src directory
 ```
 cd src
 ```
 
-Make sonmari.py file into exe file using pyinstaller
+### Make sonmari.py file into exe file using pyinstaller
 ```
 pyinstaller --onefile --icon=logo.ico sonmari.py
 ```
-Then you can see sonmari.exe in dist directory. Move "sonmari.exe" file out of the dist directory.
+Then you can see sonmari.exe in dist directory. 
 
-Install yolo and darknet
+### Move "sonmari.exe" file out of the dist directory.
+
+### Install yolo and darknet
 내용 보충할것
 
-visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
+### visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
 
-sonmari.exe 실행
+### Run sonmari.exe 
 
 
 
