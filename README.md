@@ -29,10 +29,19 @@ Download all following requirements.
  - openCV
  - 비주얼스튜디오 2019
  - pyinstaller
-
+ - pyqt5
+ ```
+pip install pyinstaller
+```
+```
+pip install PyQt5
+```
 
 ### Clone main branch and unzip the file
 
+```
+git clone https://github.com/23bulgogi/sonmari.git
+```
 ### Move to src directory
 ```
 cd src
@@ -48,11 +57,12 @@ Then you can see sonmari.exe in dist directory.
 
 ### Install yolo and darknet
 내용 보충할것
-
-### visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
+visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
 
 ### Run sonmari.exe 
-
+```
+sonmari.exe
+```
 
 
 ## Contribution Guide
@@ -95,13 +105,6 @@ View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CO
 ### How to training
 Refer https://github.com/23bulgogi/sonmari/wiki/How-to-Training
 
-
-## Using sonmari
-
-logo.png, sonmari.py, sonmariui.ui 를 sonmari_video.py 와 같은 경로에 다운받은 후 sonmari.py를 실행한다.
-```
-sonmari.py
-```
 
 ## Dataset
 
