@@ -24,32 +24,33 @@ Open-source Sign language translator using deep learning model
 
 ### 내용 수정해야함
 
-### packages to install
+### Requirements
+Download all following requirements.
  - 파이썬 3.* 및 pip
  - openCV
  - 비주얼스튜디오 2019
  - pyinstaller
 
 
-1. clone main branch and unzip the file
+Clone main branch and unzip the file
 
-2.
+Move to src directory
 ```
 cd src
 ```
 
-3.
+Make sonmari.py file into exe file using pyinstaller
 ```
 pyinstaller --onefile --icon=logo.ico sonmari.py
 ```
-cmd창에서 위와 같은 명령을 입력하면 dist 폴더안에 sonmari.exe가 생성되는 것을 볼수있다. 해당 exe파일을 dist 폴더 밖으로 이동시킨다.
+Then you can see sonmari.exe in dist directory. Move "sonmari.exe" file out of the dist directory.
 
-3. Install yolo and darknet
+Install yolo and darknet
 내용 보충할것
 
-4. visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
+visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
 
-5. sonmari.exe 실행
+sonmari.exe 실행
 
 
 
