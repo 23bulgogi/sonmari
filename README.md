@@ -19,18 +19,49 @@ Open-source Sign language translator using deep learning model
 카메라를 통해 수어 영상이 입력으로 들어오면 그 영상을 한국어 문자언어로 실시간 번역하여 화면에 출력한다.    
 예를 들어 ‘설사’, ‘감기’, ‘콧물’ 등의 수어 동작을 카메라에 비추면, 이 모션을 인식하여 해당 의미의 한국어로 화면에 출력해준다. 또한 이 프로그램에서는 '리셋' 동작을 별도로 지정해두었다. 사용자가 '리셋' 동작을 취할 때까지 출력된 단어들을 화면 위에 모두 보여주어, 문장 수준의 이해가 가능하도록 했다.
 
+## Build Guide
+
+### 내용 수정해야함
+
+### packages to install
+ - 파이썬 3.* 및 pip
+ - openCV
+ - 비주얼스튜디오 2019
+ - pyinstaller
+
+### 1. clone main branch and unzip the file
+
+### 2. pyinstaller --onefile --icon=logo.ico sonmari.py
+cmd창에서 위와 같은 명령을 입력하면 dist 폴더안에 sonmari.exe가 생성되는 것을 볼수있다. 해당 exe파일을 dist 폴더 밖으로 이동시킨다.
+
+### 3. Install yolo and darknet
+내용 보충할것
+
+### 4. visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
+
+### 5. sonmari.exe 실행
+
+
 ## Contribution Guide
 
 Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonmari/blob/main/CONTRIBUTING.md) 
 
-## Setup Guide
+
+## Quickly Start
+
+Clone releases branch and unzip the file. 
+Then you can see "sonmari.exe" file. Click the file then you can run the program easily.
+
+
+
+## Development Guide
 
 ### Prerequistics
  * WebCam
  * GPU (for training)
     * For testing, GPU is not needed.
 
-### Software requirements
+### Development Environment
  - Python 3.6
  - OpenCV 3.x
  - CMAKE 3.18
@@ -38,8 +69,8 @@ Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonma
  - cuDNN 8.0.2
  - PYQT5
 
-
-## Development Guide
+cpu를 이용해 해당 프로그램을 실행시킬 때는 CUDA와 cuDNN이 필수적이지 않으나,
+본 프로그램을 이용해 직접 트레이닝하고 확장시키려면 gpu와 CUDA, CuDNN이 필수적임.
 
 ### Code of conduct
 View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
