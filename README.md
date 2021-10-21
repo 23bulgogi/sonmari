@@ -33,7 +33,15 @@ Open-source Sign language translator using deep learning model
 
 1. clone main branch and unzip the file
 
-2. pyinstaller --onefile --icon=logo.ico sonmari.py
+2.
+```
+cd src
+```
+
+3.
+```
+pyinstaller --onefile --icon=logo.ico sonmari.py
+```
 cmd창에서 위와 같은 명령을 입력하면 dist 폴더안에 sonmari.exe가 생성되는 것을 볼수있다. 해당 exe파일을 dist 폴더 밖으로 이동시킨다.
 
 3. Install yolo and darknet
@@ -56,6 +64,9 @@ Clone releases branch and unzip the file.
 Then you can see "sonmari.exe" file. 
 Click the file then you can run the program easily.
 
+```
+sonmari.exe
+```
 
 
 ## Development Guide
