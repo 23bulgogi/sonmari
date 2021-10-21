@@ -70,16 +70,6 @@ sonmari.exe
 Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonmari/blob/main/CONTRIBUTING.md) 
 
 
-## Quickly Start (Window and Laptop Only)
-
-Clone releases branch and unzip the file. 
-Then you can see "sonmari.exe" file. 
-Click the file then you can run the program easily.
-
-```
-sonmari.exe
-```
-
 
 ## Development Guide
 
