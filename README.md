@@ -8,7 +8,7 @@ Open-source Sign language translator using deep learning model
 
 <img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif"  width="800" height="450">
 
-### Demo on [YouTube](https://youtu.be/v-RnQI9o_Uk) 
+### Demo on [YouTube](https://youtu.be/vU0wX_ToSsw) 
 
 ## Info
 
