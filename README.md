@@ -27,8 +27,8 @@ Open-source Sign language translator using deep learning model
 Download all following requirements.
  - Python 3.7 and pip https://www.python.org/downloads/
  - openCV 4.1.0 download https://opencv.org/releases/
- - Visual Studio 2019 
- - CMAKE
+ - Visual Studio 2019 https://visualstudio.microsoft.com/ko/downloads/
+ - CMAKE https://cmake.org/download/
  - PyQt5
  ```
  pip install PyQt5
