@@ -60,12 +60,12 @@ Check 'BUILD_opencv_world' in the red list and Click generate.
 ```
 cd opencv/build
 ```
-Open ALL_BUILD.vcxproj with Visual Studio.
+Open 'ALL_BUILD.vcxproj' with Visual Studio.
 
-Build mode -> release
-See solution explorer then you can see ALL_BUILD in CMakeTarget. 
-Right click ALL_BUILD and build. 
-Then right click install and build also.
+Build mode -> release.
+If you look at 'solution explorer' then you can see ALL_BUILD in CMakeTarget. 
+Right click 'ALL_BUILD' and build. 
+Then right click 'install' and build also.
 
  
 
@@ -81,12 +81,12 @@ git clone https://github.com/AlexeyAB/darknet
 ```
 cd opencv\build\bin\Release
 ```
-Copy opencv_ffmpeg410_64.dll, opencv_world410.dll into darknet\build\darknet\x64
+Copy 'opencv_ffmpeg410_64.dll', 'opencv_world410.dll' into darknet\build\darknet\x64
 
 
 ### Compile Yolo
 
-Open yolo_cpp_dll_no_gpu.vcxproj in Visual studio and Change Compile mode to 'Release x64'
+Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
 Then build dll file.
 
 ### Compile Darknet
