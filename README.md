@@ -25,43 +25,96 @@ Open-source Sign language translator using deep learning model
 
 ### Requirements
 Download all following requirements.
- - 파이썬 3.* 및 pip
- - openCV
- - 비주얼스튜디오 2019
- - pyinstaller
- - pyqt5
- ```
-pip install pyinstaller
+ - 파이썬 3.7 및 pip https://www.python.org/downloads/
+ - openCV 4.1.0 download https://opencv.org/releases/
+ - 비주얼스튜디오 2019 
+ - CMAKE
+
+### Install OpenCV
+Download openCV 4.1.0 source at https://opencv.org/releases/ and unzip the file.
+
+ 
+
+### Install opencv-contrib
 ```
+git clone https://github.com/opencv/opencv_contrib
 ```
-pip install PyQt5
+Unzip the file and Copy 'opencv-contrib' folder into 'opencv' directory.
+
+
+### Make OpenCV
+Open CMAKE-gui, and Click Browse-source and Choose 'opencv/sources' directory.
+Click Browse-build and Choose 'opencv/build' directory.
+
+Configure-> visual studio 16 2019, x64
+
+If you wait, you will see a red list. It takes a long.
+Check 'BUILD_opencv_world' in the red list and Click generate.
+
+
+### Build OpenCV
+```
+cd opencv/build
+```
+Open ALL_BUILD.vcxproj with Visual Studio.
+
+Build mode -> release
+See solution explorer then you can see ALL_BUILD in CMakeTarget. 
+Right click ALL_BUILD and build. 
+Then right click install and build also.
+
+ 
+
+### Clone YoloV4
+
+```
+git clone https://github.com/AlexeyAB/darknet
 ```
 
-### Clone main branch and unzip the file
 
+
+### Copy dll files and paste to darknet\build\darknet\x64
+```
+cd opencv\build\bin\Release
+```
+Copy opencv_ffmpeg410_64.dll, opencv_world410.dll into darknet\build\darknet\x64
+
+
+# Compile Yolo
+
+Open yolo_cpp_dll_no_gpu.vcxproj in Visual studio and Change Compile mode to 'Release x64'
+Then build dll file.
+
+# Compile Darknet
+
+Open darknet.sln with Visual studio.
+compile mode-> release x64
+
+Right click 'darknet.sln' and click the '속성'
+
+Then click C/C++ -> 일반 -> 추가포함디렉토리
+Add 'opencv\build\install\include' (Find opencv path).
+
+Click Linker->general->추가포함디렉토리
+Add 'opencv\build\install\x64\vc16\lib'
+
+Save and build the solution.
+
+
+### Move into darknet/build/darknet/x64
+```
+cd darknet/build/darknet/x64
+```
+
+### Clone Sonmari and unzip the file
 ```
 git clone https://github.com/23bulgogi/sonmari.git
 ```
-### Move to src directory
-```
-cd src
-```
 
-### Make sonmari.py file into exe file using pyinstaller
-```
-pyinstaller --onefile --icon=logo.ico sonmari.py
-```
-Then you can see sonmari.exe in dist directory. 
 
-### Move "sonmari.exe" file out of the dist directory.
-
-### Install yolo and darknet
-내용 보충할것
-visual studio를 이용해 yolo_cpp_dll_no_gpu.vcxproj를 release 모드로 빌드, 생성된 dll 파일을 모두 sonmari.exe가 위치한 폴더로 이동시킴
-
-### Run sonmari.exe 
+### Run sonmari.py 
 ```
-sonmari.exe
+sonmari.py
 ```
 
 
