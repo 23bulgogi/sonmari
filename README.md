@@ -101,7 +101,7 @@ Add 'opencv\build\install\x64\vc16\lib'
 Save and build the solution.
 
 
-### Move into darknet/build/darknet/x64
+### Move into 'darknet/build/darknet/x64'
 ```
 cd darknet/build/darknet/x64
 ```
@@ -111,6 +111,14 @@ cd darknet/build/darknet/x64
 git clone https://github.com/23bulgogi/sonmari.git
 ```
 
+### Move Sonmari/src files into 'darknet/build/darknet/x64'
+
+```
+move src/* ../..
+move src/cfg ../..
+move src/model ../..
+move src/data ../..
+```
 
 ### Run sonmari.py 
 ```
