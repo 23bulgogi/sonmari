@@ -25,10 +25,14 @@ Open-source Sign language translator using deep learning model
 
 ### Requirements
 Download all following requirements.
- - 파이썬 3.7 및 pip https://www.python.org/downloads/
+ - Python 3.7 and pip https://www.python.org/downloads/
  - openCV 4.1.0 download https://opencv.org/releases/
- - 비주얼스튜디오 2019 
+ - Visual Studio 2019 
  - CMAKE
+ - PyQt5
+ ```
+ pip install PyQt5
+ ```
 
 ### Install OpenCV
 Download openCV 4.1.0 source at https://opencv.org/releases/ and unzip the file.
@@ -80,23 +84,23 @@ cd opencv\build\bin\Release
 Copy opencv_ffmpeg410_64.dll, opencv_world410.dll into darknet\build\darknet\x64
 
 
-# Compile Yolo
+### Compile Yolo
 
 Open yolo_cpp_dll_no_gpu.vcxproj in Visual studio and Change Compile mode to 'Release x64'
 Then build dll file.
 
-# Compile Darknet
+### Compile Darknet
 
 Open darknet.sln with Visual studio.
 compile mode-> release x64
 
 Right click 'darknet.sln' and click the '속성'
 
-Then click C/C++ -> 일반 -> 추가포함디렉토리
+Then click C/C++ ->general->Additional include directories
 Add 'opencv\build\install\include' (Find opencv path).
 
-Click Linker->general->추가포함디렉토리
-Add 'opencv\build\install\x64\vc16\lib'
+Click Linker->general->Additional include directories
+Add 'opencv\build\install\x64\vc16\lib' (Find opencv path).
 
 Save and build the solution.
 
@@ -146,9 +150,10 @@ Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonma
  - CUDA 10.2
  - cuDNN 8.0.2
  - PYQT5
+ 
+ CUDA and cuDnn are not essential when you executing the program using cpu,
+ But gpu,CUDA,cuDnn are essential to train using this program.
 
-cpu를 이용해 해당 프로그램을 실행시킬 때는 CUDA와 cuDNN이 필수적이지 않으나,
-본 프로그램을 이용해 직접 트레이닝하고 확장시키려면 gpu와 CUDA, CuDNN이 필수적임.
 
 ### Code of conduct
 View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
