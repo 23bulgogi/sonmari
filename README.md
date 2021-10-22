@@ -94,7 +94,7 @@ Then build dll file.
 Open darknet.sln with Visual studio.
 compile mode-> release x64
 
-Right click 'darknet.sln' and click the '속성'
+Right click 'darknet.sln' and click the 'property'
 
 Then click C/C++ ->general->Additional include directories
 Add 'opencv\build\install\include' (Find opencv path).
