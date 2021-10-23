@@ -4,20 +4,21 @@ Open-source Sign language translator using deep learning model
 
 [![GitHub version](https://badge.fury.io/gh/23bulgogi%2Fsonmari.svg)](https://badge.fury.io/gh/23bulgogi%2Fsonmari)
 
-## 수어번역기 손마리
+## Sonmari Demo
 
 <img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif"  width="800" height="450">
 
-### Demo on [YouTube](https://youtu.be/vU0wX_ToSsw) 
+### Full demo on [YouTube](https://youtu.be/vU0wX_ToSsw) 
 
 ## Info
 
-수어를 한국어로 번역해주는 병원용 수어 번역 프로그램으로 의료 통역사가 부족한 상황에서 청각장애인이 진료를 받을 때 통역사의 도움 없이 독립적으로 진료를 받을 수 있도록 하는 것이 목적이다. 프로그램을 사용하여 의사가 청각장애인의 수어를 이해할 수 있도록 디자인했다.
+This is a hospital sign language translation program that translates sign language into Korean, and the purpose is to allow deaf people to be independent of translators for there treatment in a situation where medical interpreters are insufficient. We designed this program so that doctors can understand the sign language of the deaf by using this program.
+
 
 ## Role
 
-카메라를 통해 수어 영상이 입력으로 들어오면 그 영상을 한국어 문자언어로 실시간 번역하여 화면에 출력한다.    
-예를 들어 ‘설사’, ‘감기’, ‘콧물’ 등의 수어 동작을 카메라에 비추면, 이 모션을 인식하여 해당 의미의 한국어로 화면에 출력해준다. 또한 이 프로그램에서는 '리셋' 동작을 별도로 지정해두었다. 사용자가 '리셋' 동작을 취할 때까지 출력된 단어들을 화면 위에 모두 보여주어, 문장 수준의 이해가 가능하도록 했다.
+When a sign language image is input through the camera, the meaning is translated into Korean text language in real time and displayed on the program screen.
+For example, if you show the camera the sign language movements such as diarrhea, cold, and runny nose, this motion is recognized and the meaning is displayed on the screen in Korean words. In addition, we added the 'reset' action separately in this program for initializing all outputs. Until the program recognizing the 'reset' action, all the translated words are displayed on the screen, enabling understanding of the sentence level.
 
 
 ## Build Guide
@@ -172,13 +173,13 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## References
 
- * YOLO를 이용한 커스텀 데이터 트레이닝
+ * Custom Data training using YOLOv4
     * https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
- * YOLO 설치
+ * YOLOv4 installation
     * https://wiserloner.tistory.com/m/1247
- * 참고했던 이전의 수어번역 프로그램
+ * The previous sign language translation program
     * https://www.youtube.com/watch?v=7XLu7p8Vatg&t=16s
- * 정확도 확인
+ * Test Accuracy
     * https://github.com/Cartucho/mAP
- * 라벨링 툴
+ * Labelling tool [labelImg]
     * https://github.com/tzutalin/labelImg
