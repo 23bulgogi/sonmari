@@ -18,7 +18,7 @@ This is a hospital sign language translation program that translates sign langua
 ## Role
 
 When a sign language image is input through the camera, the meaning is translated into Korean text language in real time and displayed on the program screen.
-For example, if you show the camera the sign language movements such as diarrhea, cold, and runny nose, this motion is recognized and the meaning is displayed on the screen in Korean words. In addition, we added the 'reset' action separately in this program for initializing all outputs. Until the program recognizing the 'reset' action, all the translated words are displayed on the screen, enabling understanding of the sentence level.
+For example, if you show the camera the sign language movements such as diarrhea, cold, and runny nose, this motion is recognized and the meaning is displayed on the screen in Korean words. In addition, we added the 'reset' action separately in this program for initializing all outputs. Until the program recognizing the 'reset' action, all the translated words are displayed on the screen to be understood in the form of a simple sentence.
 
 
 ## Build Guide
