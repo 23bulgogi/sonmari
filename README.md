@@ -37,8 +37,10 @@ Download all following requirements.
 
 ### Install OpenCV
 Download openCV 4.1.0 source at https://opencv.org/releases/ and unzip the file.
-
- 
+```
+pip install opencv-python
+```
+unzip downloaded file and install opencv using pip
 
 ### Install opencv-contrib
 ```
@@ -87,7 +89,7 @@ Copy 'opencv_ffmpeg410_64.dll', 'opencv_world410.dll' into darknet\build\darknet
 
 ### Compile Yolo
 
-Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
+Go back to darknet\build\darknet and Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
 Then build dll file.
 
 ### Compile Darknet
@@ -95,12 +97,12 @@ Then build dll file.
 Open darknet.sln with Visual studio.
 compile mode-> release x64
 
-Right click 'darknet.sln' and click the 'property'
+Right click 'darknet_no_gpu.sln' and click the 'property'
 
 Then click C/C++ ->general->Additional include directories
 Add 'opencv\build\install\include' (Find opencv path).
 
-Click Linker->general->Additional include directories
+Click Linker->general->Additional library directories
 Add 'opencv\build\install\x64\vc16\lib' (Find opencv path).
 
 Save and build the solution.
