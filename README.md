@@ -105,11 +105,6 @@ cd opencv\build\bin\Release
 Copy 'opencv_ffmpeg410_64.dll', 'opencv_world410.dll' into darknet\build\darknet\x64
 
 
-### Compile Yolo
-
-Go back to darknet\build\darknet and Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
-Then build dll file.
-
 ### Compile Darknet
 
 Open darknet_no_gpu.sln with Visual studio.
@@ -125,6 +120,12 @@ Add 'opencv\build\install\x64\vc16\lib' (Find opencv path).
 
 Save and build the solution.
 
+
+### Compile Yolo
+
+Go back to darknet\build\darknet and Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
+Then build dll file.
+If you have build issue, there are yolo_cpp_dll_no_gpu files in sonmari/src. So just download it in 'darknet/build/darknet/x64'
 
 ### Move into 'darknet/build/darknet/x64'
 ```
