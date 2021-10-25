@@ -30,27 +30,38 @@ Download all following requirements.
  - openCV 4.1.0 download https://opencv.org/releases/
  - Visual Studio 2019 https://visualstudio.microsoft.com/ko/downloads/
  - CMAKE https://cmake.org/download/
+ - git
  - PyQt5
+ - numpy
  ```
  pip install PyQt5
  ```
+ ```
+ pip install numpy
+ ```
 
 ### Install OpenCV
-Download openCV 4.1.0 source at https://opencv.org/releases/ and unzip the file.
+Download openCV 4.1.0 'sources' at https://opencv.org/releases/ and unzip the file.
+
+unzip downloaded file and rename 'opencv-4.*.*' folder into 'opencv'
+
 ```
-pip install opencv-python
+cd opencv
 ```
-unzip downloaded file and install opencv using pip
 
 ### Install opencv-contrib
 ```
 git clone https://github.com/opencv/opencv_contrib
 ```
-Unzip the file and Copy 'opencv-contrib' folder into 'opencv' directory.
+Install 'opencv-contrib' in 'opencv' directory.
 
 
 ### Make OpenCV
-Open CMAKE-gui, and Click Browse-source and Choose 'opencv/sources' directory.
+Make a directory in 'opencv'.
+```
+mkdir build
+```
+Then open CMAKE-gui, and Click Browse-source and Choose 'opencv' directory.
 Click Browse-build and Choose 'opencv/build' directory.
 
 Configure-> visual studio 16 2019, x64
@@ -94,7 +105,7 @@ Then build dll file.
 
 ### Compile Darknet
 
-Open darknet.sln with Visual studio.
+Open darknet_no_gpu.sln with Visual studio.
 compile mode-> release x64
 
 Right click 'darknet_no_gpu.sln' and click the 'property'
