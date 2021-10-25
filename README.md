@@ -33,6 +33,7 @@ Download all following requirements.
  - git
  - PyQt5
  - numpy
+ - pillow
  ```
  pip install PyQt5
  ```
@@ -40,6 +41,12 @@ Download all following requirements.
  pip install numpy
  ```
 
+```
+pip install opencv-python
+```
+```
+pip install pillow
+```
 ### Install OpenCV
 Download openCV 4.1.0 'sources' at https://opencv.org/releases/ and unzip the file.
 
