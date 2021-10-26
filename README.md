@@ -30,6 +30,9 @@ Download all following requirements.
  - openCV 4.1.0 download https://opencv.org/releases/
  - Visual Studio 2019 https://visualstudio.microsoft.com/ko/downloads/
  - CMAKE https://cmake.org/download/
+ - (for GPU) CUDA 10.2
+ - (for GPU) Graphic Card - we used NVIDIA geforce RTX 2070
+ - (for GPU) CUdnn 7.65 - for CUDA 10.2 ver
  - git
  - PyQt5
  - numpy
@@ -47,6 +50,11 @@ pip install opencv-python
 ```
 pip install pillow
 ```
+
+### (for GPU) Install CUdnn
+
+Download CUdnn (CUdnn version that fits CUDA version that you installed) and unzip the file. Copy the contents inside CUdnn to CUDA folder.
+
 ### Install OpenCV
 Download openCV 4.1.0 'sources' at https://opencv.org/releases/ and unzip the file.
 
@@ -104,6 +112,21 @@ cd opencv\build\bin\Release
 ```
 Copy 'opencv_ffmpeg410_64.dll', 'opencv_world410.dll' into darknet\build\darknet\x64
 
+### (for GPU) set CUdnn, CUDA for darknet
++ Go to the path where you installed cuda and copied CUdnn. 
+```
+cd Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin
+```
+
+  Then copy 'cudnn64_7.dll' file into darknet\build\darknet\x64.      
+
++ As installed CUDA version is 10.2, you have to modify original files accordingly(darknet default version is 10.1). Go to darknet\build\darknet and open 'darknet.vcxproj' with text editor. Then search 'CUDA 10' and modify to 'CUDA10.2'.   
+ Do same for 'yolo_cpp_dll.vcxproj'.
+
+
+
+
+
 
 ### Compile Darknet
 
@@ -118,14 +141,24 @@ Add 'opencv\build\install\include' (Find opencv path).
 Click Linker->general->Additional library directories
 Add 'opencv\build\install\x64\vc16\lib' (Find opencv path).
 
-Save and build the solution.
+(for GPU) If you want to use GPU, the following two things should be done additionally.   
++ C/C++ -> Preprocessor -> Preprocessor Definitions -> remove CUDNN_HALF   
+
++ CUDA C/C++ -> Device -> modify Code Generation according to your [Compute capability](http://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
+
+And save and build the solution.
 
 
 ### Compile Yolo
 
+#### for CPU
+
 Go back to darknet\build\darknet and Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
 Then build dll file.
 If you have build issue, there are yolo_cpp_dll_no_gpu files in sonmari/src. So just download it in 'darknet/build/darknet/x64'
+
+#### for GPU
+Do same for CPU as above, but open 'yolo_cpp_dll.vcxproj', not 'yolo_cpp_dll_no_gpu.vcxproj'.
 
 ### Move into 'darknet/build/darknet/x64'
 ```
