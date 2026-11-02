@@ -7,7 +7,6 @@ Open-source Korean Sign Language translator for hospitals, using a YOLOv4 model.
 <img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif" width="800">
 
 - 🎬 데모 영상: [Google Drive](https://drive.google.com/file/d/1gQuCYR1dsx_L5tSe3xyAj115FsYxC_k8/view?usp=sharing)
-- 📺 이전 버전 데모: [YouTube](https://youtu.be/vU0wX_ToSsw)
 
 ---
 
