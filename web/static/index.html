@@ -38,6 +38,7 @@
     <div class="row">
       <button id="start">카메라 시작</button>
       <button class="ghost" id="reset">문장 지우기</button>
+      <label style="font-size:14px;display:flex;gap:6px;align-items:center"><input type="checkbox" id="flip"> 좌우 반전해서 인식</label>
       <span class="status" id="status">대기 중</span>
     </div>
     <div class="label" style="margin-top:12px">인식 후보 (디버그)</div>
@@ -73,12 +74,16 @@ function connect() {
 function sendFrame() {
   if (busy || !ws || ws.readyState !== 1 || !video.videoWidth) return;
   grab.width = 640; grab.height = Math.round(640 * video.videoHeight / video.videoWidth);
-  grab.getContext('2d').drawImage(video, 0, 0, grab.width, grab.height);
+  const g = grab.getContext('2d');
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  if ($('flip').checked) g.setTransform(-1, 0, 0, 1, grab.width, 0);  // 모델에 들어가는 영상을 좌우 반전
+  g.drawImage(video, 0, 0, grab.width, grab.height);
   busy = true;
   grab.toBlob(b => b.arrayBuffer().then(buf => ws.send(buf)), 'image/jpeg', 0.8);
 }
 
 function draw(r) {
+  overlay.style.transform = $('flip').checked ? 'none' : 'scaleX(-1)';  // 반전 시 박스 좌표가 이미 거울 기준
   overlay.width = r.width || 640; overlay.height = r.height || 480;
   ctx.clearRect(0, 0, overlay.width, overlay.height);
   ctx.lineWidth = 3; ctx.strokeStyle = '#6fc2a8';

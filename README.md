@@ -1,239 +1,134 @@
-# Sonmari
+# 손마리 (Sonmari)
 
-Open-source Sign language translator using deep learning model
+**딥러닝 기반 의료 수어 번역기** — 카메라에 수어 동작을 보여주면 한국어 문장으로 실시간 번역합니다.
 
-[![GitHub version](https://badge.fury.io/gh/23bulgogi%2Fsonmari.svg)](https://badge.fury.io/gh/23bulgogi%2Fsonmari)
+Open-source Korean Sign Language translator for hospitals, using a YOLOv4 model.
 
-## Sonmari Demo
+<img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif" width="800">
 
-<img src="https://user-images.githubusercontent.com/74365895/132082420-573b5459-bdbd-4ee7-b9ad-afab2ce75651.gif"  width="800" height="450">
+- 🎬 데모 영상: [Google Drive](https://drive.google.com/file/d/1gQuCYR1dsx_L5tSe3xyAj115FsYxC_k8/view?usp=sharing)
+- 📺 이전 버전 데모: [YouTube](https://youtu.be/vU0wX_ToSsw)
 
-### Full demo on [YouTube](https://youtu.be/vU0wX_ToSsw) 
+---
 
-## Info
+## 소개
 
-This is a hospital sign language translation program that translates sign language into Korean, and the purpose is to allow deaf people to be independent of translators for there treatment in a situation where medical interpreters are insufficient. We designed this program so that doctors can understand the sign language of the deaf by using this program.
+병원에서 의료 수어 통역사가 부족한 상황에서도, 농인 환자가 통역사 없이 의사와 소통할 수 있도록 만든 프로그램입니다.
+의사가 이 프로그램을 통해 환자의 수어를 이해할 수 있는 것을 목표로 합니다.
 
+웹캠으로 들어온 수어 동작을 YOLOv4 모델이 인식하고, 인식된 동작들을 조합해 한국어 단어로 바꿔 화면에 문장으로 보여줍니다.
+`초기화` 동작을 인식하기 전까지 번역된 단어가 이어져 간단한 문장 형태로 표시됩니다.
 
-## Role
+## 번역 가능한 단어
 
-When a sign language image is input through the camera, the meaning is translated into Korean text language in real time and displayed on the program screen.
-For example, if you show the camera the sign language movements such as diarrhea, cold, and runny nose, this motion is recognized and the meaning is displayed on the screen in Korean words. In addition, we added the 'reset' action separately in this program for initializing all outputs. Until the program recognizing the 'reset' action, all the translated words are displayed on the screen to be understood in the form of a simple sentence.
+| 단어 | 동작 라벨 | 단어 | 동작 라벨 |
+|---|---|---|---|
+| 2일 | `2day` | 입원 | `hospitalization1 → 2 → 3` |
+| 3일 | `3day` | 퇴원 | `hospitalization3 → 2 → 1` |
+| 네 | `yes` | 완쾌 | `recovery1 → 2 → 3` |
+| 아니오 | `no1 → no2` | 낫다 | `recovery3` |
+| 머리 | `head` | 소화불량 | `digestion1 → 2 → poor` |
+| 배 | `stomach` | 변비 | `constipation1 → 2 → 3` |
+| 아프다 | `sick` | 소변 | `urine1 → urine2` |
+| 쓰러지다 | `fall1 → fall2` | 약 | `medicine` |
+| 감기 | `cold1 → cold2` | 수술 | `surgery1 → surgery2` |
+| 콧물 | `runnynose1 → runnynose2` | 초기화 (문장 지우기) | `reset` |
+| 설사 | `diarrhea1 → diarrhea2` | | |
 
+동작이 여러 개인 단어는 핵심 동작을 순서대로 인식했을 때 번역됩니다. (총 34개 동작 클래스)
 
-## Build Guide
+---
 
+## 빠른 시작 (웹 버전)
 
-### Requirements
-Download all following requirements.
- - Python 3.7 and pip https://www.python.org/downloads/
- - openCV 4.1.0 download https://opencv.org/releases/
- - Visual Studio 2019 https://visualstudio.microsoft.com/ko/downloads/
- - CMAKE https://cmake.org/download/
- - (for GPU) CUDA 10.2
- - (for GPU) Graphic Card - we used NVIDIA geforce RTX 2070
- - (for GPU) CUdnn 7.65 - for CUDA 10.2 ver
- - git
- - PyQt5
- - numpy
- - pillow
- ```
- pip install PyQt5
- ```
- ```
- pip install numpy
- ```
+GPU, CUDA, Visual Studio 없이 **Mac / Windows / Linux** 어디서나 CPU로 실행됩니다.
 
-```
-pip install opencv-python
-```
-```
-pip install pillow
-```
+### 1. 코드와 모델 받기
 
-### (for GPU) Install CUdnn
-
-Download CUdnn (CUdnn version that fits CUDA version that you installed) and unzip the file. Copy the contents inside CUdnn to CUDA folder.
-
-### Install OpenCV
-Download openCV 4.1.0 'sources' at https://opencv.org/releases/ and unzip the file.
-
-unzip downloaded file and rename 'opencv-4.*.*' folder into 'opencv'
-
-```
-cd opencv
-```
-
-### Install opencv-contrib
-```
-git clone https://github.com/opencv/opencv_contrib
-```
-Install 'opencv-contrib' in 'opencv' directory.
-
-
-### Make OpenCV
-Make a directory in 'opencv'.
-```
-mkdir build
-```
-Then open CMAKE-gui, and Click Browse-source and Choose 'opencv' directory.
-Click Browse-build and Choose 'opencv/build' directory.
-
-Configure-> visual studio 16 2019, x64
-
-If you wait, you will see a red list. It takes a long.
-Check 'BUILD_opencv_world' in the red list and Click generate.
-
-
-### Build OpenCV
-```
-cd opencv/build
-```
-Open 'ALL_BUILD.vcxproj' with Visual Studio.
-
-Build mode -> release.
-If you look at 'solution explorer' then you can see ALL_BUILD in CMakeTarget. 
-Right click 'ALL_BUILD' and build. 
-Then right click 'install' and build also.
-
- 
-
-### Clone YoloV4
-
-```
-git clone https://github.com/AlexeyAB/darknet
-```
-
-
-
-### Copy dll files and paste to darknet\build\darknet\x64
-```
-cd opencv\build\bin\Release
-```
-Copy 'opencv_ffmpeg410_64.dll', 'opencv_world410.dll' into darknet\build\darknet\x64
-
-### (for GPU) set CUdnn, CUDA for darknet
-+ Go to the path where you installed cuda and copied CUdnn. 
-```
-cd Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin
-```
-
-  Then copy 'cudnn64_7.dll' file into darknet\build\darknet\x64.      
-
-+ As installed CUDA version is 10.2, you have to modify original files accordingly(darknet default version is 10.1). Go to darknet\build\darknet and open 'darknet.vcxproj' with text editor. Then search 'CUDA 10' and modify to 'CUDA10.2'.   
- Do same for 'yolo_cpp_dll.vcxproj'.
-
-
-
-
-
-
-### Compile Darknet
-
-Open darknet_no_gpu.sln with Visual studio.
-compile mode-> release x64
-
-Right click 'darknet_no_gpu.sln' and click the 'property'
-
-Then click C/C++ ->general->Additional include directories
-Add 'opencv\build\install\include' (Find opencv path).
-
-Click Linker->general->Additional library directories
-Add 'opencv\build\install\x64\vc16\lib' (Find opencv path).
-
-(for GPU) If you want to use GPU, the following two things should be done additionally.   
-+ C/C++ -> Preprocessor -> Preprocessor Definitions -> remove CUDNN_HALF   
-
-+ CUDA C/C++ -> Device -> modify Code Generation according to your [Compute capability](http://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
-
-And save and build the solution.
-
-
-### Compile Yolo
-
-#### for CPU
-
-Go back to darknet\build\darknet and Open 'yolo_cpp_dll_no_gpu.vcxproj' in Visual studio and Change Compile mode to 'Release x64'
-Then build dll file.
-If you have build issue, there are yolo_cpp_dll_no_gpu files in sonmari/src. So just download it in 'darknet/build/darknet/x64'
-
-#### for GPU
-Do same for CPU as above, but open 'yolo_cpp_dll.vcxproj', not 'yolo_cpp_dll_no_gpu.vcxproj'.
-
-### Move into 'darknet/build/darknet/x64'
-```
-cd darknet/build/darknet/x64
-```
-
-### Clone Sonmari and unzip the file
-```
+```bash
 git clone https://github.com/23bulgogi/sonmari.git
+cd sonmari/web
+
+# 학습된 모델 (약 256MB)
+curl -L -o model/yolov4-obj_best.weights \
+  https://github.com/23bulgogi/sonmari/releases/download/model-v1/yolov4-obj_best.weights
 ```
 
-### Move Sonmari/src files into 'darknet/build/darknet/x64'
+### 2. 설치 및 실행
 
-```
-move src/* ../..
-move src/cfg ../..
-move src/model ../..
-move src/data ../..
-```
-
-### Run sonmari.py 
-```
-sonmari.py
+```bash
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python -m uvicorn app:app --port 8000
 ```
 
+브라우저에서 http://localhost:8000 을 열고 **카메라 시작**을 누르세요.
 
-## Contribution Guide
+### Docker로 실행
 
-Contributing to sonmari : [HOW TO CONTRIBUTE](https://github.com/23bulgogi/sonmari/blob/main/CONTRIBUTING.md) 
+```bash
+cd web
+docker build -t sonmari .
+docker run -p 8000:8000 -v "$(pwd)/model:/app/model" sonmari
+```
 
+자세한 설정(임계값, 서버 배포 시 주의사항)은 [web/README.md](web/README.md)를 참고하세요.
 
+---
 
-## Development Guide
+## 구조
 
-### Prerequistics
- * WebCam
- * GPU (for training)
-    * For testing, GPU is not needed.
+```
+sonmari/
+├── web/                     # 웹 버전 (권장)
+│   ├── app.py               # FastAPI 서버, WebSocket(/ws)으로 프레임 수신
+│   ├── detector.py          # OpenCV DNN으로 YOLOv4 실행
+│   ├── translator.py        # 동작 라벨 → 한국어 문장 변환
+│   ├── check_model.py       # 모델 파일 점검 도구
+│   ├── static/index.html    # 웹캠 화면
+│   └── model/               # cfg, obj.names (+ 직접 받은 weights)
+└── src/                     # 이전 Windows 데스크톱 버전 (PyQt5 + darknet)
+```
 
-### Development Environment
- - Python 3.6
- - OpenCV 3.x
- - CMAKE 3.18
- - CUDA 10.2
- - cuDNN 8.0.2
- - PYQT5
- 
- CUDA and cuDnn are not essential when you executing the program using cpu,
- But gpu,CUDA,cuDnn are essential to train using this program.
+**동작 방식:** 브라우저가 웹캠 프레임을 서버로 보내면 → YOLOv4가 손 동작을 검출하고 → `translator.py`가 최근 인식된 동작들의 순서를 보고 단어를 만들어 → 문장과 함께 브라우저로 돌려줍니다.
 
+## 모델
 
-### Code of conduct
-View [Code of conduct](https://github.com/23bulgogi/sonmari/blob/main/CODE_OF_CONDUCT.md) for community guidelines.
+- YOLOv4 (darknet), 입력 416×416, 34개 클래스
+- 학습 설정: [`web/model/yolov4-obj.cfg`](web/model/yolov4-obj.cfg), 클래스 목록: [`web/model/obj.names`](web/model/obj.names)
+- 학습 방법: [AlexeyAB/darknet — How to train to detect your custom objects](https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects)
 
-### How to training
-Refer https://github.com/23bulgogi/sonmari/wiki/How-to-Training
+모델이 이상하게 동작하면(아무 동작에나 같은 라벨이 나오는 등) cfg와 weights가 짝이 맞는지 먼저 확인하세요.
 
+```bash
+cd web && python check_model.py
+```
 
-## Dataset
+## 알려진 제한사항
 
-<img src="https://user-images.githubusercontent.com/74365895/132034383-fb3dbb94-402a-4e70-977f-89c9e2f481f0.jpg"  width="800" height="400">
+- CPU로 실행하면 초당 약 4프레임 정도로 처리됩니다(iMac 기준). 여러 동작으로 된 단어는 동작을 천천히, 또렷하게 해야 인식이 잘 됩니다.
+- 일부 동작(예: 수술)은 인식률이 낮습니다. 화면의 **좌우 반전해서 인식** 옵션을 켜면 나아질 수 있습니다.
+- 조명, 배경, 카메라와의 거리가 학습 데이터와 다르면 정확도가 떨어집니다.
+- 서버에 배포할 경우 브라우저는 HTTPS에서만 카메라를 허용합니다.
+- 같은 단어는 문장에 한 번만 표시됩니다.
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/23bulgogi/sonmari/blob/main/LICENSE) file for details
+## 이전 데스크톱 버전 (Windows)
 
-## References
+`src/` 폴더에는 PyQt5 + darknet DLL 기반의 Windows 데스크톱 버전이 있습니다.
+Visual Studio, CMake, OpenCV 빌드가 필요하고 GPU 사용 시 CUDA 10.2 / cuDNN 7이 필요해 설치가 까다롭습니다. 새로 시작한다면 웹 버전을 권장합니다.
+당시의 빌드 가이드는 [이전 README](https://github.com/23bulgogi/sonmari/blob/0aa1ad13fa47e978a30f3b0e0ba92b02fff65a15/README.md)에서 볼 수 있습니다.
 
- * Custom Data training using YOLOv4
-    * https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
- * YOLOv4 installation
-    * https://wiserloner.tistory.com/m/1247
- * The previous sign language translation program
-    * https://www.youtube.com/watch?v=7XLu7p8Vatg&t=16s
- * Test Accuracy
-    * https://github.com/Cartucho/mAP
- * Labelling tool [labelImg]
-    * https://github.com/tzutalin/labelImg
+## 기여하기
+
+[CONTRIBUTING.md](CONTRIBUTING.md)를 참고해 주세요. 이 프로젝트에 참여하는 모든 분은 [행동 강령](CODE_OF_CONDUCT.md)을 따릅니다.
+
+## 만든 사람들
+
+whogodemo · Minju Ko · Jeongin Bae · bjin28 · Jeongkyu Shin
+
+## 라이선스
+
+[MIT License](LICENSE)

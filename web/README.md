@@ -11,7 +11,12 @@ Mac / Windows / Linux 어디서나 CPU로 동작하고, 브라우저에서 웹�
 |---|---|
 | `yolov4-obj.cfg` | 레포에 포함 (학습에 쓴 cfg와 다르면 학습용 cfg로 교체) |
 | `obj.names` | 레포에 포함 |
-| `yolov4-obj_best.weights` | 구글 드라이브에서 받아서 직접 넣기 (git에는 올리지 않음) |
+| `yolov4-obj_best.weights` | [Releases](https://github.com/23bulgogi/sonmari/releases/tag/model-v1)에서 받기 (용량이 커서 git에는 올리지 않음) |
+
+```bash
+curl -L -o model/yolov4-obj_best.weights \
+  https://github.com/23bulgogi/sonmari/releases/download/model-v1/yolov4-obj_best.weights
+```
 
 > cfg의 `classes=34`, 마지막 층들의 `filters=117`이 weights를 학습할 때 쓴 값과 같아야 합니다.
 > 다르면 로드 단계에서 에러가 나거나 결과가 엉망이 됩니다.
@@ -52,4 +57,5 @@ docker run -p 8000:8000 -v "$(pwd)/model:/app/model" sonmari
 - `translator.py` — 프레임별 라벨 → 문장 변환 (기존 `sonmari_video.py` 로직 이식)
 - `app.py` — FastAPI 서버, `/ws` WebSocket
 - `static/index.html` — 웹캠 화면
+- `check_model.py` — cfg와 weights 짝 확인, 이미지로 인식 테스트
 - `test_translator.py` — 번역 로직 테스트 (`python test_translator.py`)
