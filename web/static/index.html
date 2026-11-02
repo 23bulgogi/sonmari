@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>손마리</title>
+<style>
+  :root { --bg:#f6f5f2; --fg:#1d1d1b; --muted:#6b6a66; --accent:#2f6f5e; --card:#fff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#eeede9; --muted:#9a9993; --accent:#6fc2a8; --card:#222220; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px; }
+  h1 { font-size:22px; margin:0 0 4px; } p.sub { margin:0 0 16px; color:var(--muted); font-size:14px; }
+  .stage { position:relative; background:#000; border-radius:12px; overflow:hidden; aspect-ratio:4/3; }
+  video, canvas { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scaleX(-1); }
+  .word { position:absolute; left:16px; top:12px; font-size:36px; font-weight:700; color:#fff; text-shadow:0 2px 8px #000a; }
+  .panel { margin-top:16px; background:var(--card); border-radius:12px; padding:16px; }
+  .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .sentence { font-size:28px; min-height:40px; }
+  .row { display:flex; gap:8px; margin-top:12px; align-items:center; flex-wrap:wrap; }
+  button { font:inherit; padding:10px 16px; border-radius:8px; border:0; background:var(--accent); color:#fff; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--fg); border:1px solid var(--muted); }
+  .status { font-size:13px; color:var(--muted); margin-left:auto; }
+</style>
+</head>
+<body>
+<main>
+  <h1>손마리</h1>
+  <p class="sub">카메라에 수어 동작을 보여주면 한국어로 번역합니다.</p>
+  <div class="stage">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="overlay"></canvas>
+    <div class="word" id="word"></div>
+  </div>
+  <div class="panel">
+    <div class="label">번역된 문장</div>
+    <div class="sentence" id="sentence"></div>
+    <div class="row">
+      <button id="start">카메라 시작</button>
+      <button class="ghost" id="reset">문장 지우기</button>
+      <span class="status" id="status">대기 중</span>
+    </div>
+    <div class="label" style="margin-top:12px">인식 후보 (디버그)</div>
+    <div id="cands" style="font-family:ui-monospace,monospace;font-size:14px">-</div>
+  </div>
+</main>
+<script>
+const video = document.getElementById('video'), overlay = document.getElementById('overlay');
+const ctx = overlay.getContext('2d'), grab = document.createElement('canvas');
+const $ = id => document.getElementById(id);
+let ws, busy = false, wordTimer, last = performance.now();
+
+function connect() {
+  ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws');
+  ws.binaryType = 'arraybuffer';
+  ws.onopen = () => { $('status').textContent = '연결됨'; sendFrame(); };
+  ws.onclose = () => { $('status').textContent = '연결 끊김 — 재연결 중'; busy = false; setTimeout(connect, 1500); };
+  ws.onmessage = e => {
+    const r = JSON.parse(e.data);
+    busy = false;
+    $('sentence').textContent = r.sentence;
+    if (r.word) { $('word').textContent = r.word; clearTimeout(wordTimer); wordTimer = setTimeout(() => $('word').textContent = '', 1200); }
+    draw(r);
+    $('cands').textContent = (r.candidates || []).length
+      ? r.candidates.map(c => `${c.label} ${(c.conf*100).toFixed(0)}%${c.conf >= r.thresh ? ' ✓' : ''}`).join('   ')
+      : '검출 없음';
+    const now = performance.now();
+    $('status').textContent = `${(1000 / (now - last)).toFixed(1)} fps`; last = now;
+    sendFrame();
+  };
+}
+
+function sendFrame() {
+  if (busy || !ws || ws.readyState !== 1 || !video.videoWidth) return;
+  grab.width = 640; grab.height = Math.round(640 * video.videoHeight / video.videoWidth);
+  grab.getContext('2d').drawImage(video, 0, 0, grab.width, grab.height);
+  busy = true;
+  grab.toBlob(b => b.arrayBuffer().then(buf => ws.send(buf)), 'image/jpeg', 0.8);
+}
+
+function draw(r) {
+  overlay.width = r.width || 640; overlay.height = r.height || 480;
+  ctx.clearRect(0, 0, overlay.width, overlay.height);
+  ctx.lineWidth = 3; ctx.strokeStyle = '#6fc2a8';
+  for (const d of r.detections || []) ctx.strokeRect(...d.box);
+}
+
+$('start').onclick = async () => {
+  try {
+    video.srcObject = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+    $('start').disabled = true;
+    video.onloadedmetadata = () => { if (!ws) connect(); else sendFrame(); };
+  } catch (e) { $('status').textContent = '카메라 권한이 필요합니다'; }
+};
+$('reset').onclick = () => ws && ws.readyState === 1 && ws.send('reset');
+</script>
+</body>
+</html>

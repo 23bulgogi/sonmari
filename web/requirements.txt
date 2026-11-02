@@ -1,0 +1,5 @@
+# OpenCV 5.x에는 darknet 로더(readNetFromDarknet)가 없어서 4.x로 고정
+opencv-python-headless>=4.5,<5
+numpy<2.3
+fastapi>=0.110
+uvicorn[standard]>=0.29
