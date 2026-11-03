@@ -24,21 +24,32 @@
 
 ### 번역 가능한 단어
 
-| 단어 | 동작 라벨 | 단어 | 동작 라벨 |
-|---|---|---|---|
-| 2일 | `2day` | 입원 | `hospitalization1 → 2 → 3` |
-| 3일 | `3day` | 퇴원 | `hospitalization3 → 2 → 1` |
-| 네 | `yes` | 완쾌 | `recovery1 → 2 → 3` |
-| 아니오 | `no1 → no2` | 낫다 | `recovery3` |
-| 머리 | `head` | 소화불량 | `digestion1 → 2 → poor` |
-| 배 | `stomach` | 변비 | `constipation1 → 2 → 3` |
-| 아프다 | `sick` | 소변 | `urine1 → urine2` |
-| 쓰러지다 | `fall1 → fall2` | 약 | `medicine` |
-| 감기 | `cold1 → cold2` | 수술 | `surgery1 → surgery2` |
-| 콧물 | `runnynose1 → runnynose2` | 초기화 (문장 지우기) | `reset` |
-| 설사 | `diarrhea1 → diarrhea2` | | |
+| 단어 | 동작 | 라벨 |
+|---|---|---|
+| 2일 | <img src="docs/gestures/2day.jpg" width="90" alt="2day"> | `2day` |
+| 3일 | <img src="docs/gestures/3day.jpg" width="90" alt="3day"> | `3day` |
+| 네 | <img src="docs/gestures/yes.jpg" width="90" alt="yes"> | `yes` |
+| 아니오 | <img src="docs/gestures/no1.jpg" width="90" alt="no1"> → <img src="docs/gestures/no2.jpg" width="90" alt="no2"> | `no1` → `no2` |
+| 머리 | <img src="docs/gestures/head.jpg" width="90" alt="head"> | `head` |
+| 배 | <img src="docs/gestures/stomach.jpg" width="90" alt="stomach"> | `stomach` |
+| 아프다 | <img src="docs/gestures/sick.jpg" width="90" alt="sick"> | `sick` |
+| 쓰러지다 | <img src="docs/gestures/fall1.jpg" width="90" alt="fall1"> → <img src="docs/gestures/fall2.jpg" width="90" alt="fall2"> | `fall1` → `fall2` |
+| 감기 | <img src="docs/gestures/cold1.jpg" width="90" alt="cold1"> → <img src="docs/gestures/cold2.jpg" width="90" alt="cold2"> | `cold1` → `cold2` |
+| 콧물 | <img src="docs/gestures/runnynose1.jpg" width="90" alt="runnynose1"> → <img src="docs/gestures/runnynose2.jpg" width="90" alt="runnynose2"> | `runnynose1` → `runnynose2` |
+| 설사 | <img src="docs/gestures/diarrhea1.jpg" width="90" alt="diarrhea1"> → <img src="docs/gestures/diarrhea2.jpg" width="90" alt="diarrhea2"> | `diarrhea1` → `diarrhea2` |
+| 입원 | <img src="docs/gestures/hospitalization1.jpg" width="90" alt="hospitalization1"> → <img src="docs/gestures/hospitalization2.jpg" width="90" alt="hospitalization2"> → <img src="docs/gestures/hospitalization3.jpg" width="90" alt="hospitalization3"> | `hospitalization1` → `hospitalization2` → `hospitalization3` |
+| 퇴원 | <img src="docs/gestures/hospitalization3.jpg" width="90" alt="hospitalization3"> → <img src="docs/gestures/hospitalization2.jpg" width="90" alt="hospitalization2"> → <img src="docs/gestures/hospitalization1.jpg" width="90" alt="hospitalization1"> | `hospitalization3` → `hospitalization2` → `hospitalization1` |
+| 완쾌 | <img src="docs/gestures/recovery1.jpg" width="90" alt="recovery1"> → <img src="docs/gestures/recovery2.jpg" width="90" alt="recovery2"> → <img src="docs/gestures/recovery3.jpg" width="90" alt="recovery3"> | `recovery1` → `recovery2` → `recovery3` |
+| 낫다 | <img src="docs/gestures/recovery3.jpg" width="90" alt="recovery3"> | `recovery3` |
+| 소화불량 | <img src="docs/gestures/digestion1.jpg" width="90" alt="digestion1"> → <img src="docs/gestures/digestion2.jpg" width="90" alt="digestion2"> → <img src="docs/gestures/poor.jpg" width="90" alt="poor"> | `digestion1` → `digestion2` → `poor` |
+| 변비 | <img src="docs/gestures/constipation1.jpg" width="90" alt="constipation1"> → <img src="docs/gestures/constipation2.jpg" width="90" alt="constipation2"> → <img src="docs/gestures/constipation3.jpg" width="90" alt="constipation3"> | `constipation1` → `constipation2` → `constipation3` |
+| 소변 | <img src="docs/gestures/urine1.jpg" width="90" alt="urine1"> → <img src="docs/gestures/urine2.jpg" width="90" alt="urine2"> | `urine1` → `urine2` |
+| 약 | <img src="docs/gestures/medicine.jpg" width="90" alt="medicine"> | `medicine` |
+| 수술 | <img src="docs/gestures/surgery1.jpg" width="90" alt="surgery1"> → <img src="docs/gestures/surgery2.jpg" width="90" alt="surgery2"> | `surgery1` → `surgery2` |
+| 초기화<br>(문장 지우기) | <img src="docs/gestures/reset.jpg" width="90" alt="reset"> | `reset` |
 
 동작이 여러 개인 단어는 핵심 동작을 순서대로 인식했을 때 번역됩니다. (총 34개 동작 클래스)
+예시 사진은 [공개 데이터셋](https://huggingface.co/datasets/whogodemo/sonmari-ksl-medical)에서 손 부분을 잘라낸 것입니다.
 
 ### 빠른 시작 (웹 버전)
 
@@ -135,21 +146,32 @@ Translated words keep accumulating into a simple sentence until the `reset` gest
 
 ### Supported words
 
-| Korean | Meaning | Gesture labels | Korean | Meaning | Gesture labels |
-|---|---|---|---|---|---|
-| 2일 | 2 days | `2day` | 입원 | Hospitalization | `hospitalization1 → 2 → 3` |
-| 3일 | 3 days | `3day` | 퇴원 | Discharge | `hospitalization3 → 2 → 1` |
-| 네 | Yes | `yes` | 완쾌 | Full recovery | `recovery1 → 2 → 3` |
-| 아니오 | No | `no1 → no2` | 낫다 | Get better | `recovery3` |
-| 머리 | Head | `head` | 소화불량 | Indigestion | `digestion1 → 2 → poor` |
-| 배 | Stomach | `stomach` | 변비 | Constipation | `constipation1 → 2 → 3` |
-| 아프다 | Sick / hurts | `sick` | 소변 | Urine | `urine1 → urine2` |
-| 쓰러지다 | Collapse | `fall1 → fall2` | 약 | Medicine | `medicine` |
-| 감기 | Cold | `cold1 → cold2` | 수술 | Surgery | `surgery1 → surgery2` |
-| 콧물 | Runny nose | `runnynose1 → runnynose2` | 초기화 | Reset (clear sentence) | `reset` |
-| 설사 | Diarrhea | `diarrhea1 → diarrhea2` | | | |
+| Word | Gestures | Labels |
+|---|---|---|
+| 2 days<br>(2일) | <img src="docs/gestures/2day.jpg" width="90" alt="2day"> | `2day` |
+| 3 days<br>(3일) | <img src="docs/gestures/3day.jpg" width="90" alt="3day"> | `3day` |
+| Yes<br>(네) | <img src="docs/gestures/yes.jpg" width="90" alt="yes"> | `yes` |
+| No<br>(아니오) | <img src="docs/gestures/no1.jpg" width="90" alt="no1"> → <img src="docs/gestures/no2.jpg" width="90" alt="no2"> | `no1` → `no2` |
+| Head<br>(머리) | <img src="docs/gestures/head.jpg" width="90" alt="head"> | `head` |
+| Stomach<br>(배) | <img src="docs/gestures/stomach.jpg" width="90" alt="stomach"> | `stomach` |
+| Sick / hurts<br>(아프다) | <img src="docs/gestures/sick.jpg" width="90" alt="sick"> | `sick` |
+| Collapse<br>(쓰러지다) | <img src="docs/gestures/fall1.jpg" width="90" alt="fall1"> → <img src="docs/gestures/fall2.jpg" width="90" alt="fall2"> | `fall1` → `fall2` |
+| Cold<br>(감기) | <img src="docs/gestures/cold1.jpg" width="90" alt="cold1"> → <img src="docs/gestures/cold2.jpg" width="90" alt="cold2"> | `cold1` → `cold2` |
+| Runny nose<br>(콧물) | <img src="docs/gestures/runnynose1.jpg" width="90" alt="runnynose1"> → <img src="docs/gestures/runnynose2.jpg" width="90" alt="runnynose2"> | `runnynose1` → `runnynose2` |
+| Diarrhea<br>(설사) | <img src="docs/gestures/diarrhea1.jpg" width="90" alt="diarrhea1"> → <img src="docs/gestures/diarrhea2.jpg" width="90" alt="diarrhea2"> | `diarrhea1` → `diarrhea2` |
+| Hospitalization<br>(입원) | <img src="docs/gestures/hospitalization1.jpg" width="90" alt="hospitalization1"> → <img src="docs/gestures/hospitalization2.jpg" width="90" alt="hospitalization2"> → <img src="docs/gestures/hospitalization3.jpg" width="90" alt="hospitalization3"> | `hospitalization1` → `hospitalization2` → `hospitalization3` |
+| Discharge<br>(퇴원) | <img src="docs/gestures/hospitalization3.jpg" width="90" alt="hospitalization3"> → <img src="docs/gestures/hospitalization2.jpg" width="90" alt="hospitalization2"> → <img src="docs/gestures/hospitalization1.jpg" width="90" alt="hospitalization1"> | `hospitalization3` → `hospitalization2` → `hospitalization1` |
+| Full recovery<br>(완쾌) | <img src="docs/gestures/recovery1.jpg" width="90" alt="recovery1"> → <img src="docs/gestures/recovery2.jpg" width="90" alt="recovery2"> → <img src="docs/gestures/recovery3.jpg" width="90" alt="recovery3"> | `recovery1` → `recovery2` → `recovery3` |
+| Get better<br>(낫다) | <img src="docs/gestures/recovery3.jpg" width="90" alt="recovery3"> | `recovery3` |
+| Indigestion<br>(소화불량) | <img src="docs/gestures/digestion1.jpg" width="90" alt="digestion1"> → <img src="docs/gestures/digestion2.jpg" width="90" alt="digestion2"> → <img src="docs/gestures/poor.jpg" width="90" alt="poor"> | `digestion1` → `digestion2` → `poor` |
+| Constipation<br>(변비) | <img src="docs/gestures/constipation1.jpg" width="90" alt="constipation1"> → <img src="docs/gestures/constipation2.jpg" width="90" alt="constipation2"> → <img src="docs/gestures/constipation3.jpg" width="90" alt="constipation3"> | `constipation1` → `constipation2` → `constipation3` |
+| Urine<br>(소변) | <img src="docs/gestures/urine1.jpg" width="90" alt="urine1"> → <img src="docs/gestures/urine2.jpg" width="90" alt="urine2"> | `urine1` → `urine2` |
+| Medicine<br>(약) | <img src="docs/gestures/medicine.jpg" width="90" alt="medicine"> | `medicine` |
+| Surgery<br>(수술) | <img src="docs/gestures/surgery1.jpg" width="90" alt="surgery1"> → <img src="docs/gestures/surgery2.jpg" width="90" alt="surgery2"> | `surgery1` → `surgery2` |
+| Reset<br>(clears the sentence) | <img src="docs/gestures/reset.jpg" width="90" alt="reset"> | `reset` |
 
 Words made of multiple gestures are translated when their key gestures are recognized in order. (34 gesture classes in total)
+Example images are hand crops from the [public dataset](https://huggingface.co/datasets/whogodemo/sonmari-ksl-medical).
 
 ### Quick start (web version)
 
