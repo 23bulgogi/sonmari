@@ -11,11 +11,11 @@ Mac / Windows / Linux 어디서나 CPU로 동작하고, 브라우저에서 웹�
 |---|---|
 | `yolov4-obj.cfg` | 레포에 포함 (학습에 쓴 cfg와 다르면 학습용 cfg로 교체) |
 | `obj.names` | 레포에 포함 |
-| `yolov4-obj_best.weights` | [Releases](https://github.com/23bulgogi/sonmari/releases/tag/model-v1)에서 받기 (용량이 커서 git에는 올리지 않음) |
+| `yolov4-obj_best.weights` | [Releases](https://github.com/23bulgogi/sonmari/releases/tag/model-v2)에서 받기 (용량이 커서 git에는 올리지 않음) |
 
 ```bash
 curl -L -o model/yolov4-obj_best.weights \
-  https://github.com/23bulgogi/sonmari/releases/download/model-v1/yolov4-obj_best.weights
+  https://github.com/23bulgogi/sonmari/releases/download/model-v2/yolov4-obj_best.weights
 ```
 
 > cfg의 `classes=34`, 마지막 층들의 `filters=117`이 weights를 학습할 때 쓴 값과 같아야 합니다.

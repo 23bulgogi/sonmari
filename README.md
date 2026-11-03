@@ -52,7 +52,7 @@ cd sonmari/web
 
 # 학습된 모델 (약 256MB)
 curl -L -o model/yolov4-obj_best.weights \
-  https://github.com/23bulgogi/sonmari/releases/download/model-v1/yolov4-obj_best.weights
+  https://github.com/23bulgogi/sonmari/releases/download/model-v2/yolov4-obj_best.weights
 ```
 
 **2. 설치 및 실행**
@@ -163,7 +163,7 @@ cd sonmari/web
 
 # Trained model (~256 MB)
 curl -L -o model/yolov4-obj_best.weights \
-  https://github.com/23bulgogi/sonmari/releases/download/model-v1/yolov4-obj_best.weights
+  https://github.com/23bulgogi/sonmari/releases/download/model-v2/yolov4-obj_best.weights
 ```
 
 **2. Install and run**
